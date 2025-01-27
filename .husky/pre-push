@@ -1,0 +1,22 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+[ -s ~/.nvm/nvm.sh ] && . ~/.nvm/nvm.sh # NOTE: necessary when using NVM (Node version manager)
+
+local_branch_name="$(git rev-parse --abbrev-ref HEAD)"
+
+if [ "$local_branch_name" = "main" ]; then
+    echo "You can't commit directly to main branch. Please create your own branch and analyze the README."
+    exit 1
+fi
+
+pnpm lint
+LINT_RESULT=$?
+if [ $LINT_RESULT -ne 0 ]; then
+    echo "Linting failed. Please fix the linting errors before pushing."
+    exit $LINT_RESULT
+fi
+
+if ! pnpm test:cov; then
+    echo "Test coverage threshold not met. Please ensure your tests cover enough of the codebase."
+    exit 1
+fi

@@ -1,0 +1,694 @@
+{
+  "underMaintenance": false,
+  "payments": {
+    "depositGateway": "Cashfree",
+    "withdrawGateway": "Cashfree",
+    "isGstDeductionEnabled": true,
+    "isGstCashbackEnabled": true,
+    "isTaxDeductionEnabled": true,
+    "isTaxCashbackEnabled": true,
+    "isQuickWithdrawEnabled": true,
+    "isFreeWithdrawEnabled": true,
+    "androidPaymentModes": "UPI,Others",
+    "iOSPaymentModes": "UPI,Others",
+    "isNameVerificationEnabled": true,
+    "accountVerificationCharges": "1"
+  },
+  "limits": {
+    "autoTransferLimit": "1000000",
+    "minDepositLimit": "1",
+    "maxDepositLimit": "100000",
+    "upiWithdrawalLimit": "1",
+    "bankWithdrawalLimit": "1",
+    "kycWithdrawalLimit": "10",
+    "taxFreeWithdrawalLimit": "10",
+    "maxWithdrawalsPerDay": "100",
+    "kycLimitPerDocument": "1"
+  },
+  "freeGames": {
+    "allowedGamesPerDay": "2",
+    "winningsToPro": "5",
+    "upiWithdrawalLimit": "1",
+    "bankWithdrawalLimit": "1",
+    "maxWithdrawalsPerDay": "2",
+    "maxLifetimeWithdrawalLimit": "6"
+  },
+  "commissions": {
+    "bonusCommission": "2",
+    "referralCommission": "2",
+    "conversionCommission": "0",
+    "discrepancyCommission": "1"
+  },
+  "bonuses": {
+    "referralBonus": "0",
+    "signupBonus": {
+      "main": "0",
+      "bonus": "0",
+      "win": "0"
+    }
+  },
+  "versions": {
+    "internalAndroidVersion": "0.0.1",
+    "currentAndroidVersion": "0.0.1",
+    "internalAndroidCode": "",
+    "currentPlayStoreCode": "51",
+    "currentWebsiteCode": "50,51",
+    "internaliOSVersion": "0.0.1",
+    "currentiOSVersion": "0.0.1",
+    "internaliOSCode": "",
+    "currentiOSCode": "51"
+  },
+  "securityChecks": {
+    "isDeveloperModeCheckEnabled": true,
+    "isVPNCheckEnabled": true,
+    "isEmulatorCheckEnabled": true,
+    "isRootCheckEnabled": true,
+    "isAppGenuinityEnabled": true,
+    "isDeviceBlockingEnabled": true,
+    "locationCheckPlatforms": "Editor,Android,iOS"
+  },
+  "features": {
+    "openContentExternally": true,
+    "openSupportPageExternally": false,
+    "useHttpWebRequest": false,
+    "acceptAllCertificates": true,
+    "applyBuildSpecificWithdrawLimits": true,
+    "allowedPlatformsForRestrictedStateUsers": "Android,iOS"
+  },
+  "support": {
+    "crispId": "c4971eb0-091d-4f83-8b6e-e6ebca7dd55c",
+    "chatUrl": "https://go.crisp.chat/chat/embed/?website_id={0}&user_nickname={1}&user_phone={2}&token_id={3}&session_merge=true",
+    "email": "support@empiregames.in",
+    "website": "https://www.empiregames.in/",
+    "aboutUs": "https://empiregames.in/about-us-{0}.html",
+    "privacy": "https://empiregames.in/privacy-policy-{0}.html",
+    "refundAndCancellation": "https://empiregames.in/refund-and-cancellations-{0}.html",
+    "termsAndConditions": "https://empiregames.in/terms-and-conditions-{0}.html",
+    "tds": "https://empiregames.in/tds-deduction-{0}.html",
+    "fairPlay": "https://empiregames.in/fair-play-policy-{0}.html",
+    "safeAndSecure": "https://empiregames.in/safe-and-secure-gameplay-{0}.html",
+    "responsibleGaming": "https://empiregames.in/responsible-gaming-{0}.html"
+  },
+  "learnings": [
+    {
+      "title": "Learnings_002",
+      "url": "https://www.youtube.com/embed/KqSM9lnYo98?fs=0&rel=0",
+      "type": "video",
+      "tag": "kyc,pro,hindi,english"
+    },
+    {
+      "title": "Learnings_003",
+      "url": "https://www.youtube.com/embed/Oe8KacsJM3c?fs=0&rel=0",
+      "type": "video",
+      "tag": "deposit,pro,hindi,english"
+    },
+    {
+      "title": "Learnings_004",
+      "url": "https://www.youtube.com/embed/C3aoXtXpwNM?fs=0&rel=0",
+      "type": "video",
+      "tag": "withdraw,pro,hindi,english"
+    },
+    {
+      "title": "Learnings_006",
+      "url": "https://www.youtube.com/embed/_AeJ10rJM_I?fs=0&rel=0",
+      "type": "video",
+      "tag": "support,pro,hindi,english"
+    }
+  ],
+  "builds": {
+    "playStore": "https://play.google.com/store/apps/details?id=com.ludo.empire",
+    "appStore": "",
+    "apk": "https://apk.empiregames.in/Ludo-Empire-Pro.apk",
+    "ipa": "",
+    "redirectUrl": ""
+  },
+  "games": [
+    {
+      "id": "ludo",
+      "name": "Game_001",
+      "tag": "most popular",
+      "category": "popular,base,pro",
+      "countries": "in",
+      "config": "./config-files/le-config.json",
+      "assets": {
+        "banners": [
+          {
+            "name": "ludo_logo_1.png",
+            "tag": "logo",
+            "downloadLink": "https://test-assets.empiregames.in/ludo_logo_1.png",
+            "goToUrl": ""
+          },
+          {
+            "name": "ludo_banner_1.png",
+            "tag": "game",
+            "downloadLink": "https://test-assets.empiregames.in/ludo_banner_1.png",
+            "goToUrl": "emp://ludo"
+          }
+        ],
+        "bundles": [
+          {
+            "name": "ludo_android_9",
+            "tag": "android,base,pro,0.0.1.51",
+            "downloadLink": "https://test-bundles.empiregames.in/ludo_android_9"
+          },
+          {
+            "name": "ludo_iOS_1",
+            "tag": "iOS,pro,0.0.1.51",
+            "downloadLink": "https://test-bundles.empiregames.in/ludo_iOS_1"
+          }
+        ],
+        "jsons": [
+          {
+            "name": "le-english.json",
+            "downloadLink": "https://test-assets.empiregames.in/le-english.json"
+          },
+          {
+            "name": "le-hindi.json",
+            "downloadLink": "https://test-assets.empiregames.in/le-hindi.json"
+          }
+        ]
+      }
+    },
+    {
+      "id": "skillpatti",
+      "name": "Game_002",
+      "tag": "available in pro version,fan favorite",
+      "category": "other,base,pro",
+      "countries": "in",
+      "config": "./config-files/sp-config.json",
+      "assets": {
+        "banners": [
+          {
+            "name": "skillpatti_logo_1.png",
+            "tag": "logo",
+            "downloadLink": "https://test-assets.empiregames.in/skillpatti_logo_1.png",
+            "goToUrl": ""
+          },
+          {
+            "name": "skillpatti_banner_1.png",
+            "tag": "game",
+            "downloadLink": "https://test-assets.empiregames.in/skillpatti_banner_1.png",
+            "goToUrl": "emp://skillpatti"
+          }
+        ],
+        "bundles": [
+          {
+            "name": "skillpatti_android_9",
+            "tag": "android,pro,0.0.1.51",
+            "downloadLink": "https://test-bundles.empiregames.in/skillpatti_android_9"
+          },
+          {
+            "name": "skillpatti_iOS_1",
+            "tag": "iOS",
+            "downloadLink": "https://test.assets.empiregames.in/skillpatti_iOS_1"
+          }
+        ],
+        "jsons": []
+      }
+    },
+    {
+      "id": "rummy",
+      "name": "Game_007",
+      "tag": "under development",
+      "config": "./config-files/re-config.json",
+      "category": "other,pro",
+      "countries": "in",
+      "assets": {
+        "banners": [
+          {
+            "name": "rummy_logo_1.png",
+            "tag": "logo",
+            "downloadLink": "https://test-assets.empiregames.in/rummy_logo_1.png",
+            "goToUrl": ""
+          },
+          {
+            "name": "rummy_banner_1.png",
+            "tag": "game",
+            "downloadLink": "https://test-assets.empiregames.in/rummy_banner_1.png",
+            "goToUrl": "emp://rummy"
+          }
+        ],
+        "bundles": [
+          {
+            "name": "rummy_android_1",
+            "tag": "android,base,pro,0.0.1.37",
+            "downloadLink": "https://test-bundles.empiregames.in/rummy_android_1"
+          }
+        ],
+        "jsons": [
+          {
+            "name": "sp-english.json",
+            "downloadLink": "https://test-assets.empiregames.in/sp-english.json"
+          },
+          {
+            "name": "sp-hindi.json",
+            "downloadLink": "https://test-assets.empiregames.in/sp-hindi.json"
+          }
+        ]
+      }
+    },
+    {
+      "id": "callbreak",
+      "name": "Game_003",
+      "tag": "newly added",
+      "category": "other,base,pro",
+      "countries": "in",
+      "config": "./config-files/cb-config.json",
+      "assets": {
+        "banners": [
+          {
+            "name": "callbreak_logo_1.png",
+            "tag": "logo",
+            "downloadLink": "https://test-assets.empiregames.in/callbreak_logo_1.png",
+            "goToUrl": ""
+          },
+          {
+            "name": "callbreak_banner_1.png",
+            "tag": "game",
+            "downloadLink": "https://test-assets.empiregames.in/callbreak_banner_1.png",
+            "goToUrl": "emp://callbreak"
+          }
+        ],
+        "bundles": [
+          {
+            "name": "callbreak_android_9",
+            "tag": "android,base,pro,0.0.1.51",
+            "downloadLink": "https://test-bundles.empiregames.in/callbreak_android_9"
+          },
+          {
+            "name": "callbreak_iOS_1",
+            "tag": "iOS,pro,0.0.1.51",
+            "downloadLink": "https://test-bundles.empiregames.in/callbreak_iOS_1"
+          }
+        ],
+        "jsons": [
+          {
+            "name": "cb-english.json",
+            "downloadLink": "https://test-assets.empiregames.in/cb-english.json"
+          },
+          {
+            "name": "cb-hindi.json",
+            "downloadLink": "https://test-assets.empiregames.in/cb-hindi.json"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ludoMegaTournament",
+      "name": "Game_006",
+      "tag": "under development",
+      "category": "other,pro",
+      "countries": "in",
+      "config": "./config-files/ml-config.json",
+      "assets": {
+        "banners": [
+          {
+            "name": "megaludo_logo_1.png",
+            "tag": "logo",
+            "downloadLink": "https://test-assets.empiregames.in/megaludo_logo_1.png",
+            "goToUrl": ""
+          },
+          {
+            "name": "megaludo_banner_1.png",
+            "tag": "game",
+            "downloadLink": "https://test-assets.empiregames.in/megaludo_banner_1.png",
+            "goToUrl": "emp://ludoMegaTournament"
+          }
+        ],
+        "bundles": [
+          {
+            "name": "megaludo_android_1",
+            "tag": "android,base,pro,0.0.1.50",
+            "downloadLink": "https://test-bundles.empiregames.in/megaludo_android_1"
+          },
+          {
+            "name": "megaludo_iOS_1",
+            "tag": "iOS,pro,0.0.1.51",
+            "downloadLink": "https://test-bundles.empiregames.in/megaludo_iOS_1"
+          }
+        ],
+        "jsons": [
+          {
+            "name": "ml-english.json",
+            "downloadLink": "https://test-assets.empiregames.in/ml-english.json"
+          },
+          {
+            "name": "ml-hindi.json",
+            "downloadLink": "https://test-assets.empiregames.in/ml-hindi.json"
+          }
+        ]
+      }
+    },
+    {
+      "id": "snakesandladders",
+      "name": "Game_004",
+      "tag": "under development",
+      "category": "other,pro",
+      "countries": "in",
+      "config": "./config-files/snl-config.json",
+      "assets": {
+        "banners": [
+          {
+            "name": "snakesandladders_logo_1.png",
+            "tag": "logo",
+            "downloadLink": "https://test-assets.empiregames.in/snakesandladders_logo_1.png",
+            "goToUrl": ""
+          },
+          {
+            "name": "snakesandladders_banner_1.png",
+            "tag": "game",
+            "downloadLink": "https://test-assets.empiregames.in/snakesandladders_banner_1.png",
+            "goToUrl": "emp://snakesandladders"
+          }
+        ],
+        "bundles": [
+          {
+            "name": "snakesandladders_android_1",
+            "tag": "android,base,pro,0.0.1.51",
+            "downloadLink": "https://test-bundles.empiregames.in/snakesandladders_android_1"
+          },
+          {
+            "name": "snakesandladders_iOS_1",
+            "tag": "iOS,pro,0.0.1.51",
+            "downloadLink": "https://test-bundles.empiregames.in/snakesandladders_iOS_1"
+          }
+        ],
+        "jsons": [
+          {
+            "name": "snl-english.json",
+            "downloadLink": "https://test-assets.empiregames.in/snl-english.json"
+          },
+          {
+            "name": "snl-hindi.json",
+            "downloadLink": "https://test-assets.empiregames.in/snl-hindi.json"
+          }
+        ]
+      }
+    },
+    {
+      "id": "rummy",
+      "name": "Game_007",
+      "tag": "under development",
+      "category": "other,pro",
+      "countries": "in",
+      "config": "./config-files/re-config.json",
+      "assets": {
+        "banners": [
+          {
+            "name": "rummy_logo_1.png",
+            "tag": "logo",
+            "downloadLink": "https://test-assets.empiregames.in/rummy_logo_1.png",
+            "goToUrl": ""
+          },
+          {
+            "name": "rummy_banner_1.png",
+            "tag": "game",
+            "downloadLink": "https://test-assets.empiregames.in/rummy_banner_1.png",
+            "goToUrl": "emp://rummy"
+          }
+        ],
+        "bundles": [
+          {
+            "name": "rummy_android_1",
+            "tag": "android,base,pro,0.0.1.51",
+            "downloadLink": "https://test-bundles.empiregames.in/rummy_android_1"
+          },
+          {
+            "name": "rummy_iOS_1",
+            "tag": "iOS,pro,0.0.1.51",
+            "downloadLink": "https://test-bundles.empiregames.in/rummy_iOS_1"
+          }
+        ],
+        "jsons": [
+          {
+            "name": "re-english.json",
+            "downloadLink": "https://test-assets.empiregames.in/re-english.json"
+          },
+          {
+            "name": "re-hindi.json",
+            "downloadLink": "https://test-assets.empiregames.in/re-hindi.json"
+          }
+        ]
+      }
+    },
+    {
+      "id": "aviator",
+      "name": "Game_008",
+      "tag": "under development",
+      "category": "other,pro",
+      "countries": "in",
+      "config": "./config-files/avt-config.json",
+      "assets": {
+        "banners": [
+          {
+            "name": "aviator_logo_1.png",
+            "tag": "logo",
+            "downloadLink": "https://test-assets.empiregames.in/aviator_logo_1.png",
+            "goToUrl": ""
+          },
+          {
+            "name": "aviator_banner_1.png",
+            "tag": "game",
+            "downloadLink": "https://test-assets.empiregames.in/aviator_banner_1.png",
+            "goToUrl": "emp://aviator"
+          }
+        ],
+        "bundles": [
+          {
+            "name": "aviator_android_1",
+            "tag": "android,base,pro,0.0.1.51",
+            "downloadLink": "https://test-bundles.empiregames.in/aviator_android_1"
+          },
+          {
+            "name": "aviator_iOS_1",
+            "tag": "iOS,pro,0.0.1.51",
+            "downloadLink": "https://test-bundles.empiregames.in/aviator_iOS_1"
+          }
+        ],
+        "jsons": [
+          {
+            "name": "avt-english.json",
+            "downloadLink": "https://test-assets.empiregames.in/avt-english.json"
+          },
+          {
+            "name": "avt-hindi.json",
+            "downloadLink": "https://test-assets.empiregames.in/avt-hindi.json"
+          }
+        ]
+      }
+    },
+    {
+      "id": "handcricket",
+      "name": "Game_009",
+      "tag": "under development",
+      "category": "other,pro",
+      "countries": "in",
+      "config": "./config-files/epl-config.json"
+    },
+    {
+      "id": "cricket",
+      "name": "Game_005",
+      "tag": "upcoming",
+      "category": "other,pro",
+      "countries": "in",
+      "config": "./config-files/cr-config.json",
+      "assets": {
+        "banners": [
+          {
+            "name": "cricket_banner_1.png",
+            "tag": "game",
+            "downloadLink": "https://test-assets.empiregames.in/cricket_banner_1.png",
+            "goToUrl": "emp://cricket"
+          }
+        ],
+        "bundles": [],
+        "jsons": []
+      }
+    }
+  ],
+  "assets": {
+    "banners": [
+      {
+        "name": "invite_banner_1.jpg",
+        "tag": "invite,base,pro,english",
+        "downloadLink": "https://test-assets.empiregames.in/invite_banner_1.jpg",
+        "goToUrl": ""
+      },
+      {
+        "name": "invite_banner_2.jpg",
+        "tag": "invite,base,pro,hindi",
+        "downloadLink": "https://test-assets.empiregames.in/invite_banner_2.jpg",
+        "goToUrl": ""
+      },
+      {
+        "name": "inapp_banner_15.png",
+        "tag": "inapp,base,hindi,english",
+        "downloadLink": "https://test-assets.empiregames.in/inapp_banner_15.png",
+        "goToUrl": "https://leupdate.onelink.me/JoeL/um1sbhzy"
+      },
+      {
+        "name": "inapp_banner_16.png",
+        "tag": "inapp,freeGamesExpired,base,hindi,english",
+        "downloadLink": "https://test-assets.empiregames.in/inapp_banner_16.png",
+        "goToUrl": "https://leupdate.onelink.me/JoeL/um1sbhzy"
+      },
+      {
+        "name": "inapp_banner_17.png",
+        "tag": "inapp,withdrawExpired,base,hindi,english",
+        "downloadLink": "https://test-assets.empiregames.in/inapp_banner_17.png",
+        "goToUrl": "https://leupdate.onelink.me/JoeL/um1sbhzy"
+      },
+      {
+        "name": "inapp_banner_36.png",
+        "tag": "inapp,home,pro,english",
+        "downloadLink": "https://test-assets.empiregames.in/inapp_banner_36.png",
+        "goToUrl": "emp://Leaderboard/Monthly"
+      },
+      {
+        "name": "inapp_banner_37.png",
+        "tag": "inapp,home,pro,hindi",
+        "downloadLink": "https://test-assets.empiregames.in/inapp_banner_37.png",
+        "goToUrl": "emp://Leaderboard/Monthly"
+      },
+      {
+        "name": "header_banner_44.png",
+        "tag": "header,home,pro,english",
+        "downloadLink": "https://test-assets.empiregames.in/header_banner_44.png",
+        "goToUrl": "https://ludoempire.app/contest/"
+      },
+      {
+        "name": "header_banner_45.png",
+        "tag": "header,home,pro,hindi",
+        "downloadLink": "https://test-assets.empiregames.in/header_banner_45.png",
+        "goToUrl": "https://ludoempire.app/contest/"
+      },
+      {
+        "name": "header_banner_38.png",
+        "tag": "header,home,pro,english",
+        "downloadLink": "https://test-assets.empiregames.in/header_banner_38.png",
+        "goToUrl": ""
+      },
+      {
+        "name": "header_banner_39.png",
+        "tag": "header,home,pro,hindi",
+        "downloadLink": "https://test-assets.empiregames.in/header_banner_39.png",
+        "goToUrl": ""
+      },
+      {
+        "name": "header_banner_42.png",
+        "tag": "header,home,pro,english",
+        "downloadLink": "https://test-assets.empiregames.in/header_banner_42.png",
+        "goToUrl": "https://www.empiregames.in/no-tds-no-gst-policy"
+      },
+      {
+        "name": "header_banner_43.png",
+        "tag": "header,home,pro,hindi",
+        "downloadLink": "https://test-assets.empiregames.in/header_banner_43.png",
+        "goToUrl": "https://www.empiregames.in/no-tds-no-gst-policy"
+      },
+      {
+        "name": "header_banner_26.png",
+        "tag": "header,home,wallet,update,base,pro,english",
+        "downloadLink": "https://test-assets.empiregames.in/header_banner_26.png",
+        "goToUrl": "emp://UpdateNow"
+      },
+      {
+        "name": "header_banner_27.png",
+        "tag": "header,home,wallet,update,base,pro,hindi",
+        "downloadLink": "https://test-assets.empiregames.in/header_banner_27.png",
+        "goToUrl": "emp://UpdateNow"
+      },
+      {
+        "name": "header_banner_5.png",
+        "tag": "header,home,kyc,pro,english",
+        "downloadLink": "https://test-assets.empiregames.in/header_banner_5.png",
+        "goToUrl": "emp://Account/KYC"
+      },
+      {
+        "name": "header_banner_6.png",
+        "tag": "header,home,pro,english",
+        "downloadLink": "https://test-assets.empiregames.in/header_banner_6.png",
+        "goToUrl": "emp://ReferAndEarn"
+      },
+      {
+        "name": "header_banner_7.png",
+        "tag": "header,home,pro,english",
+        "downloadLink": "https://test-assets.empiregames.in/header_banner_7.png",
+        "goToUrl": "emp://Account/HelpAndSupport"
+      },
+      {
+        "name": "header_banner_13.png",
+        "tag": "header,home,kyc,pro,hindi",
+        "downloadLink": "https://test-assets.empiregames.in/header_banner_13.png",
+        "goToUrl": "emp://Account/KYC"
+      },
+      {
+        "name": "header_banner_14.png",
+        "tag": "header,home,pro,hindi",
+        "downloadLink": "https://test-assets.empiregames.in/header_banner_14.png",
+        "goToUrl": "emp://ReferAndEarn"
+      },
+      {
+        "name": "header_banner_15.png",
+        "tag": "header,home,pro,hindi",
+        "downloadLink": "https://test-assets.empiregames.in/header_banner_15.png",
+        "goToUrl": "emp://Account/HelpAndSupport"
+      },
+      {
+        "name": "header_banner_21.png",
+        "tag": "header,home,wallet,base,hindi,english",
+        "downloadLink": "https://test-assets.empiregames.in/header_banner_21.png",
+        "goToUrl": "https://leupdate.onelink.me/JoeL/um1sbhzy"
+      },
+      {
+        "name": "header_banner_22.png",
+        "tag": "header,home,wallet,base,hindi,english",
+        "downloadLink": "https://test-assets.empiregames.in/header_banner_22.png",
+        "goToUrl": "https://leupdate.onelink.me/JoeL/um1sbhzy"
+      },
+      {
+        "name": "header_banner_23.png",
+        "tag": "header,home,wallet,freeGamesExpired,base,hindi,english",
+        "downloadLink": "https://test-assets.empiregames.in/header_banner_23.png",
+        "goToUrl": "https://leupdate.onelink.me/JoeL/um1sbhzy"
+      }
+    ],
+    "bundles": [],
+    "jsons": [
+      {
+        "name": "eg-english.json",
+        "downloadLink": "https://test-assets.empiregames.in/eg-english.json"
+      },
+      {
+        "name": "eg-hindi.json",
+        "downloadLink": "https://test-assets.empiregames.in/eg-hindi.json"
+      },
+      {
+        "name": "eg-profanity.json",
+        "downloadLink": "https://test-assets.empiregames.in/eg-profanity.json"
+      }
+    ]
+  },
+  "reviews": {
+    "isEnabled": true,
+    "frequency": 5
+  },
+  "countries": [
+    {
+      "name": "India",
+      "countryCode": "in",
+      "dialingCode": "91",
+      "mobileNumberLength": 10,
+      "cashBundles": "100,500,1000,5000",
+      "coinBundles": "1,5,10,20,30,40,50,70,100,300,500,700,1000,3000,5000,7000,10000,30000,50000,70000,100000"
+    }
+  ],
+  "onlineUsersCount": {
+    "isUserCountEnabled": true,
+    "totalUserCountOffset": 0,
+    "tableUserCountVariance": 0,
+    "tableUserCountOffsets": {
+      "Table01": 0
+    }
+  }
+}

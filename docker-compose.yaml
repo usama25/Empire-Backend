@@ -1,0 +1,444 @@
+services:
+  # local MongoDB cluster
+  eg-backend-mongo-rs0:
+    image: mongo:7
+    container_name: eg-backend-mongo-rs0
+    restart: unless-stopped
+    ports:
+      - 27017:27017
+    entrypoint:
+      [
+        "/usr/bin/mongod",
+        "--quiet",
+        "--bind_ip_all",
+        "--keyFile",
+        "/etc/mongod.access.key",
+        "--replSet",
+        "fabzen-cluster",
+        "--logpath",
+        "/dev/null",
+      ]
+    volumes:
+      - ./confs/mongod.access.key:/etc/mongod.access.key
+      - ./mongo_data/mongo-rs0/db:/data/db
+      - ./mongo_data/mongo-rs0/configdb:/data/configdb
+  eg-backend-mongo-rs1:
+    image: mongo:7
+    container_name: eg-backend-mongo-rs1
+    restart: unless-stopped
+    ports:
+      - 27018:27017
+    entrypoint:
+      [
+        "/usr/bin/mongod",
+        "--quiet",
+        "--bind_ip_all",
+        "--keyFile",
+        "/etc/mongod.access.key",
+        "--replSet",
+        "fabzen-cluster",
+        "--logpath",
+        "/dev/null",
+      ]
+    volumes:
+      - ./confs/mongod.access.key:/etc/mongod.access.key
+      - ./mongo_data/mongo-rs1/db:/data/db
+      - ./mongo_data/mongo-rs1/configdb:/data/configdb
+  eg-backend-mongo-rs2:
+    image: mongo:7
+    container_name: eg-backend-mongo-rs2
+    restart: unless-stopped
+    ports:
+      - 27019:27017
+    entrypoint:
+      [
+        "/usr/bin/mongod",
+        "--quiet",
+        "--bind_ip_all",
+        "--keyFile",
+        "/etc/mongod.access.key",
+        "--replSet",
+        "fabzen-cluster",
+        "--logpath",
+        "/dev/null",
+      ]
+    volumes:
+      - ./confs/mongod.access.key:/etc/mongod.access.key
+      - ./mongo_data/mongo-rs2/db:/data/db
+      - ./mongo_data/mongo-rs2/configdb:/data/configdb
+
+  localstack:
+    container_name: "${LOCALSTACK_DOCKER_NAME:-localstack-main}"
+    image: localstack/localstack
+    ports:
+      - "127.0.0.1:4566:4566" # LocalStack Gateway
+      - "127.0.0.1:4510-4559:4510-4559" # external services port range
+    environment:
+      # LocalStack configuration: https://docs.localstack.cloud/references/configuration/
+      - DEBUG=${DEBUG:-0}
+    volumes:
+      - "${LOCALSTACK_VOLUME_DIR:-./localstack_data}:/var/lib/localstack"
+      - "/var/run/docker.sock:/var/run/docker.sock"
+
+  redis:
+    image: redis:latest
+    restart: always
+    ports:
+      - "6379:6379"
+    command: redis-server --save 20 1 --loglevel warning
+    volumes:
+      - ./redis_data:/data
+
+  rest-api:
+    build:
+      context: .
+      dockerfile: apps/rest-api/Dockerfile.dev
+    working_dir: /root
+    restart: unless-stopped
+    env_file: ./.env
+    volumes:
+      - .:/root
+    ports:
+      - "${REST_API_SERVICE_PORT}:${REST_API_SERVICE_PORT}"
+    depends_on:
+      - eg-backend-mongo-rs0
+      - eg-backend-mongo-rs1
+      - eg-backend-mongo-rs2
+      - localstack
+      - redis
+
+  user:
+    build:
+      context: .
+      dockerfile: apps/user/Dockerfile.dev
+    working_dir: /root
+    restart: unless-stopped
+    env_file: ./.env
+    volumes:
+      - .:/root
+    ports:
+      - "${USER_SERVICE_PORT}:${USER_SERVICE_PORT}"
+    depends_on:
+      - eg-backend-mongo-rs0
+      - eg-backend-mongo-rs1
+      - eg-backend-mongo-rs2
+      - localstack
+      - redis
+
+  auth:
+    build:
+      context: .
+      dockerfile: apps/auth/Dockerfile.dev
+    working_dir: /root
+    restart: unless-stopped
+    env_file: ./.env
+    volumes:
+      - .:/root
+    ports:
+      - "${AUTH_SERVICE_PORT}:${AUTH_SERVICE_PORT}"
+    depends_on:
+      - eg-backend-mongo-rs0
+      - eg-backend-mongo-rs1
+      - eg-backend-mongo-rs2
+      - localstack
+      - redis
+
+  game-record:
+    build:
+      context: .
+      dockerfile: apps/game-record/Dockerfile.dev
+    working_dir: /root
+    restart: unless-stopped
+    env_file: ./.env
+    volumes:
+      - .:/root
+    ports:
+      - "${RECORD_SERVICE_PORT}:${RECORD_SERVICE_PORT}"
+    depends_on:
+      - eg-backend-mongo-rs0
+      - eg-backend-mongo-rs1
+      - eg-backend-mongo-rs2
+      - localstack
+      - redis
+
+  promo:
+    build:
+      context: .
+      dockerfile: apps/promo/Dockerfile.dev
+    working_dir: /root
+    restart: unless-stopped
+    env_file: ./.env
+    volumes:
+      - .:/root
+    ports:
+      - "${PROMO_SERVICE_PORT}:${PROMO_SERVICE_PORT}"
+    depends_on:
+      - eg-backend-mongo-rs0
+      - eg-backend-mongo-rs1
+      - eg-backend-mongo-rs2
+      - localstack
+      - redis
+
+  payment:
+    build:
+      context: .
+      dockerfile: apps/payment/Dockerfile.dev
+    working_dir: /root
+    restart: unless-stopped
+    env_file: ./.env
+    volumes:
+      - .:/root
+    ports:
+      - "${PAYMENT_SERVICE_PORT}:${PAYMENT_SERVICE_PORT}"
+    depends_on:
+      - eg-backend-mongo-rs0
+      - eg-backend-mongo-rs1
+      - eg-backend-mongo-rs2
+      - localstack
+      - redis
+
+  notification:
+    build:
+      context: .
+      dockerfile: apps/notification/Dockerfile.dev
+    working_dir: /root
+    restart: unless-stopped
+    env_file: ./.env
+    volumes:
+      - .:/root
+    ports:
+      - "${NOTIFICATION_SERVICE_PORT}:${NOTIFICATION_SERVICE_PORT}"
+    depends_on:
+      - eg-backend-mongo-rs0
+      - eg-backend-mongo-rs1
+      - eg-backend-mongo-rs2
+      - localstack
+      - redis
+
+  wallet:
+    build:
+      context: .
+      dockerfile: apps/wallet/Dockerfile.dev
+    working_dir: /root
+    restart: unless-stopped
+    env_file: ./.env
+    volumes:
+      - .:/root
+    ports:
+      - "${WALLET_SERVICE_PORT}:${WALLET_SERVICE_PORT}"
+    depends_on:
+      - eg-backend-mongo-rs0
+      - eg-backend-mongo-rs1
+      - eg-backend-mongo-rs2
+      - localstack
+      - redis
+
+  socket-gateway:
+    build:
+      context: .
+      dockerfile: apps/socket-gateway/Dockerfile.dev
+    working_dir: /root
+    restart: unless-stopped
+    env_file: ./.env
+    volumes:
+      - .:/root
+    ports:
+      - "${SOCKET_GATEWAY_PUBLIC_PORT}:${SOCKET_GATEWAY_PUBLIC_PORT}"
+      - "${SOCKET_GATEWAY_PORT}:${SOCKET_GATEWAY_PORT}"
+    depends_on:
+      - eg-backend-mongo-rs0
+      - eg-backend-mongo-rs1
+      - eg-backend-mongo-rs2
+      - localstack
+      - redis
+
+  sp-gameplay:
+    build:
+      context: .
+      dockerfile: apps/sp-gameplay/Dockerfile.dev
+    working_dir: /root
+    restart: unless-stopped
+    env_file: ./.env
+    volumes:
+      - .:/root
+    ports:
+      - "${SP_GAMEPLAY_SERVICE_PORT}:${SP_GAMEPLAY_SERVICE_PORT}"
+      - "${SP_GAMEPLAY_SERVICE_PUBLIC_PORT}:${SP_GAMEPLAY_SERVICE_PUBLIC_PORT}"
+    depends_on:
+      - eg-backend-mongo-rs0
+      - eg-backend-mongo-rs1
+      - eg-backend-mongo-rs2
+      - localstack
+      - redis
+
+  re-gameplay:
+    build:
+      context: .
+      dockerfile: apps/re-gameplay/Dockerfile.dev
+    working_dir: /root
+    restart: unless-stopped
+    env_file: ./.env
+    volumes:
+      - .:/root
+    ports:
+      - "${RE_GAMEPLAY_SERVICE_PORT}:${RE_GAMEPLAY_SERVICE_PORT}"
+      - "${RE_GAMEPLAY_SERVICE_PUBLIC_PORT}:${RE_GAMEPLAY_SERVICE_PUBLIC_PORT}"
+    depends_on:
+      - eg-backend-mongo-rs0
+      - eg-backend-mongo-rs1
+      - eg-backend-mongo-rs2
+      - localstack
+      - redis
+
+  scheduler:
+    build:
+      context: .
+      dockerfile: apps/scheduler/Dockerfile.dev
+    working_dir: /root
+    restart: unless-stopped
+    env_file: ./.env
+    volumes:
+      - .:/root
+    ports:
+      - "${SCHEDULER_SERVICE_PORT}:${SCHEDULER_SERVICE_PORT}"
+    depends_on:
+      - eg-backend-mongo-rs0
+      - eg-backend-mongo-rs1
+      - eg-backend-mongo-rs2
+      - localstack
+      - redis
+
+  cbr-gameplay:
+    build:
+      context: .
+      dockerfile: apps/cbr-gameplay/Dockerfile.dev
+    working_dir: /root
+    restart: unless-stopped
+    env_file: ./.env
+    volumes:
+      - .:/root
+    ports:
+      - "${CBR_GAMEPLAY_SERVICE_PORT}:${CBR_GAMEPLAY_SERVICE_PORT}"
+      - "${CBR_GAMEPLAY_SERVICE_PUBLIC_PORT}:${CBR_GAMEPLAY_SERVICE_PUBLIC_PORT}"
+    depends_on:
+      - eg-backend-mongo-rs0
+      - eg-backend-mongo-rs1
+      - eg-backend-mongo-rs2
+      - localstack
+      - redis
+
+  ludo-gameplay:
+    build:
+      context: .
+      dockerfile: apps/ludo-gameplay/Dockerfile.dev
+    working_dir: /root
+    restart: unless-stopped
+    env_file: ./.env
+    volumes:
+      - .:/root
+    ports:
+      - "${LUDO_GAMEPLAY_SERVICE_PORT}:${LUDO_GAMEPLAY_SERVICE_PORT}"
+      - "${LUDO_GAMEPLAY_SERVICE_PUBLIC_PORT}:${LUDO_GAMEPLAY_SERVICE_PUBLIC_PORT}"
+    depends_on:
+      - eg-backend-mongo-rs0
+      - eg-backend-mongo-rs1
+      - eg-backend-mongo-rs2
+      - localstack
+      - redis
+
+  ludo-tournament:
+    build:
+      context: .
+      dockerfile: apps/ludo-tournament/Dockerfile.dev
+    working_dir: /root
+    restart: unless-stopped
+    env_file: ./.env
+    volumes:
+      - .:/root
+    ports:
+      - "${LUDO_TOURNAMENT_SERVICE_PORT}:${LUDO_TOURNAMENT_SERVICE_PORT}"
+    depends_on:
+      - eg-backend-mongo-rs0
+      - eg-backend-mongo-rs1
+      - eg-backend-mongo-rs2
+      - localstack
+      - redis
+
+  ludo-mega-tournament:
+    build:
+      context: .
+      dockerfile: apps/ludo-mega-tournament/Dockerfile.dev
+    working_dir: /root
+    restart: unless-stopped
+    env_file: ./.env
+    volumes:
+      - .:/root
+    ports:
+      - "${LUDO_MEGA_TOURNAMENT_SERVICE_PORT}:${LUDO_MEGA_TOURNAMENT_SERVICE_PORT}"
+      - "${LUDO_MEGA_TOURNAMENT_SERVICE_PUBLIC_PORT}:${LUDO_MEGA_TOURNAMENT_SERVICE_PUBLIC_PORT}"
+    depends_on:
+      - eg-backend-mongo-rs0
+      - eg-backend-mongo-rs1
+      - eg-backend-mongo-rs2
+      - localstack
+      - redis
+
+  sl-gameplay:
+    build:
+      context: .
+      dockerfile: apps/sl-gameplay/Dockerfile.dev
+    working_dir: /root
+    restart: unless-stopped
+    env_file: ./.env
+    volumes:
+      - .:/root
+    ports:
+      - "${SL_GAMEPLAY_SERVICE_PORT}:${SL_GAMEPLAY_SERVICE_PORT}"
+      - "${SL_GAMEPLAY_SERVICE_PUBLIC_PORT}:${SL_GAMEPLAY_SERVICE_PUBLIC_PORT}"
+    depends_on:
+      - eg-backend-mongo-rs0
+      - eg-backend-mongo-rs1
+      - eg-backend-mongo-rs2
+      - localstack
+      - redis
+
+  epl-gameplay:
+    build:
+      context: .
+      dockerfile: apps/epl-gameplay/Dockerfile.dev
+    working_dir: /root
+    restart: unless-stopped
+    env_file: ./.env
+    volumes:
+      - .:/root
+    ports:
+      - "${EPL_GAMEPLAY_SERVICE_PORT}:${EPL_GAMEPLAY_SERVICE_PORT}"
+      - "${EPL_GAMEPLAY_SERVICE_PUBLIC_PORT}:${EPL_GAMEPLAY_SERVICE_PUBLIC_PORT}"
+    depends_on:
+      - eg-backend-mongo-rs0
+      - eg-backend-mongo-rs1
+      - eg-backend-mongo-rs2
+      - localstack
+      - redis
+
+  aviator-gameplay:
+    build:
+      context: .
+      dockerfile: apps/aviator-gameplay/Dockerfile.dev
+    working_dir: /root
+    restart: unless-stopped
+    env_file: ./.env
+    volumes:
+      - .:/root
+    ports:
+      - "${AVIATOR_GAMEPLAY_SERVICE_PORT}:${AVIATOR_GAMEPLAY_SERVICE_PORT}"
+      - "${AVIATOR_GAMEPLAY_SERVICE_PUBLIC_PORT}:${AVIATOR_GAMEPLAY_SERVICE_PUBLIC_PORT}"
+    depends_on:
+      - eg-backend-mongo-rs0
+      - eg-backend-mongo-rs1
+      - eg-backend-mongo-rs2
+      - localstack
+      - redis
+
+networks:
+  fabzen:

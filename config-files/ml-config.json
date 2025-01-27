@@ -1,0 +1,12 @@
+{
+  "underMaintenance": false,
+  "onlineUsersCount": {
+    "isUserCountEnabled": true,
+    "totalUserCountOffset": 0,
+    "tableUserCountVariance": 5,
+    "tableUserCountOffsets": {
+      "Table01": 0
+    }
+  },
+  "megaTournamentTurn": 3
+}

@@ -1,0 +1,14 @@
+{
+  "moduleFileExtensions": ["js", "json", "ts"],
+  "rootDir": "../../..",
+  "testEnvironment": "node",
+  "testRegex": "/sp-gameplay/.*.e2e-spec.ts$",
+  "transform": {
+    "^.+\\.(t|j)s$": "ts-jest"
+  },
+  "slowTestThreshold": 16,
+  "moduleNameMapper": {
+    "@lib/fabzen-common/(.*)": "<rootDir>/libs/fabzen-common/src/$1",
+    "@lib/fabzen-common": "<rootDir>/libs/fabzen-common/src"
+  }
+}

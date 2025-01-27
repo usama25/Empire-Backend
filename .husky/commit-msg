@@ -1,0 +1,5 @@
+#!/bin/sh
+. "$(dirname -- "$0")/_/husky.sh"
+[ -s ~/.nvm/nvm.sh ] && . ~/.nvm/nvm.sh # NOTE: necessary when using NVM (Node version manager)
+
+pnpm commitlint --edit $1

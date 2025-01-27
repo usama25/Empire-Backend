@@ -1,0 +1,466 @@
+{
+  "underMaintenance": false,
+  "learnings": [
+    {
+      "title": "Learnings_008",
+      "url": "https://www.youtube.com/embed/yI8Jp1Suo8U?fs=0&rel=0",
+      "type": "video",
+      "tag": "ludo,gameplay,pro,hindi,english"
+    },
+    {
+      "title": "Learnings_009",
+      "url": "https://www.youtube.com/embed/Lk8T5_0B8Bk?fs=0&rel=0",
+      "type": "video",
+      "tag": "ludo,gameplay,pro,hindi,english"
+    }
+  ],
+  "repeatTournamentTime": 3,
+  "matchMaking": {
+    "isIPRestrictionEnabled": false,
+    "isGeolocationRestrictionEnabled": false,
+    "isPushNotificationsEnabled": false,
+    "isSocketNotificationsEnabled": true,
+    "minimumJoinAmountForNotifications": "1000"
+  },
+  "gameplayDurationByUsers": {
+    "2": 360,
+    "3": 480,
+    "4": 600
+  },
+  "ludoTables": [
+    {
+      "tableTypeId": "QuickTable00",
+      "tableType": "quick",
+      "amount": "0",
+      "maxPlayer": 2,
+      "matchingTime": 10,
+      "winnings": [
+        "1",
+        "1",
+        "1"
+      ]
+    },
+    {
+      "tableTypeId": "QuickTable01",
+      "tableType": "quick",
+      "amount": "5",
+      "maxPlayer": 2,
+      "matchingTime": 30,
+      "winnings": [
+        "9",
+        "12.75",
+        "16"
+      ]
+    },
+    {
+      "tableTypeId": "QuickTable02",
+      "tableType": "quick",
+      "amount": "15",
+      "maxPlayer": 2,
+      "matchingTime": 60,
+      "winnings": [
+        "27",
+        "38.25",
+        "48"
+      ]
+    },
+    {
+      "tableTypeId": "QuickTable03",
+      "tableType": "quick",
+      "amount": "60",
+      "maxPlayer": 2,
+      "matchingTime": 90,
+      "winnings": [
+        "108",
+        "153",
+        "192"
+      ]
+    },
+    {
+      "tableTypeId": "QuickTable04",
+      "tableType": "quick",
+      "amount": "120",
+      "maxPlayer": 2,
+      "matchingTime": 120,
+      "winnings": [
+        "216",
+        "306",
+        "384"
+      ]
+    },
+    {
+      "tableTypeId": "QuickTable05",
+      "tableType": "quick",
+      "amount": "340",
+      "maxPlayer": 2,
+      "matchingTime": 150,
+      "winnings": [
+        "612",
+        "867",
+        "1088"
+      ]
+    },
+    {
+      "tableTypeId": "QuickTable06",
+      "tableType": "quick",
+      "amount": "670",
+      "maxPlayer": 2,
+      "matchingTime": 180,
+      "winnings": [
+        "1206",
+        "1708.5",
+        "2144"
+      ]
+    },
+    {
+      "tableTypeId": "QuickTable07",
+      "tableType": "quick",
+      "amount": "1250",
+      "maxPlayer": 2,
+      "matchingTime": 210,
+      "winnings": [
+        "2250",
+        "3187.5",
+        "4000"
+      ]
+    },
+    {
+      "tableTypeId": "QuickTable08",
+      "tableType": "quick",
+      "amount": "2800",
+      "maxPlayer": 2,
+      "matchingTime": 240,
+      "winnings": [
+        "5040",
+        "7140",
+        "8960"
+      ]
+    },
+    {
+      "tableTypeId": "QuickTable09",
+      "tableType": "quick",
+      "amount": "5000",
+      "maxPlayer": 2,
+      "matchingTime": 270,
+      "winnings": [
+        "9000",
+        "12750",
+        "16000"
+      ]
+    },
+    {
+      "tableTypeId": "QuickTable10",
+      "tableType": "quick",
+      "amount": "10000",
+      "maxPlayer": 2,
+      "matchingTime": 300,
+      "winnings": [
+        "18000",
+        "25500",
+        "32000"
+      ]
+    },
+    {
+      "tableTypeId": "ClassicTable00",
+      "tableType": "classic",
+      "amount": "0",
+      "maxPlayer": 2,
+      "matchingTime": 10,
+      "winnings": [
+        "1",
+        "1",
+        "1"
+      ]
+    },
+    {
+      "tableTypeId": "ClassicTable01",
+      "tableType": "classic",
+      "amount": "5",
+      "maxPlayer": 2,
+      "matchingTime": 30,
+      "winnings": [
+        "9",
+        "12.75",
+        "16"
+      ]
+    },
+    {
+      "tableTypeId": "ClassicTable02",
+      "tableType": "classic",
+      "amount": "15",
+      "maxPlayer": 2,
+      "matchingTime": 60,
+      "winnings": [
+        "27",
+        "38.25",
+        "48"
+      ]
+    },
+    {
+      "tableTypeId": "ClassicTable03",
+      "tableType": "classic",
+      "amount": "60",
+      "maxPlayer": 2,
+      "matchingTime": 90,
+      "winnings": [
+        "108",
+        "153",
+        "192"
+      ]
+    },
+    {
+      "tableTypeId": "ClassicTable04",
+      "tableType": "classic",
+      "amount": "120",
+      "maxPlayer": 2,
+      "matchingTime": 120,
+      "winnings": [
+        "216",
+        "306",
+        "384"
+      ]
+    },
+    {
+      "tableTypeId": "ClassicTable05",
+      "tableType": "classic",
+      "amount": "340",
+      "maxPlayer": 2,
+      "matchingTime": 150,
+      "winnings": [
+        "612",
+        "867",
+        "1088"
+      ]
+    },
+    {
+      "tableTypeId": "ClassicTable06",
+      "tableType": "classic",
+      "amount": "670",
+      "maxPlayer": 2,
+      "matchingTime": 180,
+      "winnings": [
+        "1206",
+        "1708.5",
+        "2144"
+      ]
+    },
+    {
+      "tableTypeId": "ClassicTable07",
+      "tableType": "classic",
+      "amount": "1250",
+      "maxPlayer": 2,
+      "matchingTime": 210,
+      "winnings": [
+        "2250",
+        "3187.5",
+        "4000"
+      ]
+    },
+    {
+      "tableTypeId": "ClassicTable08",
+      "tableType": "classic",
+      "amount": "2800",
+      "maxPlayer": 2,
+      "matchingTime": 240,
+      "winnings": [
+        "5040",
+        "7140",
+        "8960"
+      ]
+    },
+    {
+      "tableTypeId": "ClassicTable09",
+      "tableType": "classic",
+      "amount": "5000",
+      "maxPlayer": 2,
+      "matchingTime": 270,
+      "winnings": [
+        "9000",
+        "12750",
+        "16000"
+      ]
+    },
+    {
+      "tableTypeId": "ClassicTable10",
+      "tableType": "classic",
+      "amount": "10000",
+      "maxPlayer": 2,
+      "matchingTime": 300,
+      "winnings": [
+        "18000",
+        "25500",
+        "32000"
+      ]
+    },
+    {
+      "tableTypeId": "FuriousTable00",
+      "tableType": "furious4",
+      "amount": "0",
+      "maxPlayer": 4,
+      "matchingTime": 10,
+      "winnings": [
+        "1",
+        "1",
+        "1"
+      ]
+    },
+    {
+      "tableTypeId": "FuriousTable01",
+      "tableType": "furious4",
+      "amount": "5",
+      "maxPlayer": 4,
+      "matchingTime": 30,
+      "winnings": [
+        "9",
+        "12.75",
+        "16"
+      ]
+    },
+    {
+      "tableTypeId": "FuriousTable02",
+      "tableType": "furious4",
+      "amount": "15",
+      "maxPlayer": 4,
+      "matchingTime": 60,
+      "winnings": [
+        "27",
+        "38.25",
+        "48"
+      ]
+    },
+    {
+      "tableTypeId": "FuriousTable03",
+      "tableType": "furious4",
+      "amount": "60",
+      "maxPlayer": 4,
+      "matchingTime": 90,
+      "winnings": [
+        "108",
+        "153",
+        "192"
+      ]
+    },
+    {
+      "tableTypeId": "FuriousTable04",
+      "tableType": "furious4",
+      "amount": "120",
+      "maxPlayer": 4,
+      "matchingTime": 120,
+      "winnings": [
+        "216",
+        "306",
+        "384"
+      ]
+    },
+    {
+      "tableTypeId": "FuriousTable05",
+      "tableType": "furious4",
+      "amount": "340",
+      "maxPlayer": 4,
+      "matchingTime": 150,
+      "winnings": [
+        "612",
+        "867",
+        "1088"
+      ]
+    },
+    {
+      "tableTypeId": "FuriousTable06",
+      "tableType": "furious4",
+      "amount": "670",
+      "maxPlayer": 4,
+      "matchingTime": 180,
+      "winnings": [
+        "1206",
+        "1708.5",
+        "2144"
+      ]
+    },
+    {
+      "tableTypeId": "FuriousTable07",
+      "tableType": "furious4",
+      "amount": "1250",
+      "maxPlayer": 4,
+      "matchingTime": 210,
+      "winnings": [
+        "2250",
+        "3187.5",
+        "4000"
+      ]
+    },
+    {
+      "tableTypeId": "FuriousTable08",
+      "tableType": "furious4",
+      "amount": "2800",
+      "maxPlayer": 4,
+      "matchingTime": 240,
+      "winnings": [
+        "5040",
+        "7140",
+        "8960"
+      ]
+    },
+    {
+      "tableTypeId": "FuriousTable09",
+      "tableType": "furious4",
+      "amount": "5000",
+      "maxPlayer": 4,
+      "matchingTime": 270,
+      "winnings": [
+        "9000",
+        "12750",
+        "16000"
+      ]
+    },
+    {
+      "tableTypeId": "FuriousTable11",
+      "tableType": "furious4",
+      "amount": "10000",
+      "maxPlayer": 4,
+      "matchingTime": 300,
+      "winnings": [
+        "18000",
+        "25500",
+        "32000"
+      ]
+    }
+  ],
+  "onlineUsersCount": {
+    "isUserCountEnabled": true,
+    "totalUserCountOffset": 0,
+    "tableUserCountVariance": 5,
+    "tableUserCountOffsets": {
+      "QuickTable00": 0,
+      "ClassicTable00": 0,
+      "FuriousTable00": 0
+    }
+  },
+  "features": {
+    "isAmountSelectionEnabled": false,
+    "isAllModeEnabled": false,
+    "isQuickModeEnabled": true,
+    "isClassicModeEnabled": true,
+    "isFuriousModeEnabled": true,
+    "isTournamentModeEnabled": false
+  },
+  "messages": [
+    "Kaisa laga mera mazak?",
+    "Emotional Damage",
+    "Apun ich Bhagwan Hai",
+    "Maza Ayaa?",
+    "Adbhut!",
+    "Thodi sharam kar le re baba",
+    "Abhi maza ayega na, bhidu",
+    "Zing, Zing, Amazing!",
+    "Hello!",
+    "Kyu, bali chad gayi na!",
+    "Kamaal Ho gaya!",
+    "Boom!!!",
+    "Hurry up",
+    "Aree yaar…",
+    "Please don’t",
+    "Showtime!",
+    "Peeche dheko",
+    "Jalwa hai hamara"
+  ]
+}

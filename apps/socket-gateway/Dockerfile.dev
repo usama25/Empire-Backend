@@ -1,0 +1,11 @@
+FROM node:20-alpine3.19
+
+WORKDIR /root
+
+RUN npm install --ignore-scripts -g pnpm 
+
+EXPOSE $SOCKET_GATEWAY_PORT
+
+EXPOSE $SOCKET_GATEWAY_PUBLIC_PORT
+
+CMD [ "pnpm", "start:dev", "socket-gateway" ]

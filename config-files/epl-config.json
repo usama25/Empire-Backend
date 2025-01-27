@@ -1,0 +1,114 @@
+{
+  "underMaintenance": false,
+  "tables": [
+      {
+          "tableTypeId": "Table00",
+          "amount": "0",
+          "matchingTime": 10,
+          "winnings": "1"
+      },
+      {
+          "tableTypeId": "Table01",
+          "amount": "5",
+          "matchingTime": 30,
+          "winnings": "9"
+      },
+      {
+          "tableTypeId": "Table02",
+          "amount": "15",
+          "matchingTime": 60,
+          "winnings": "27"
+      },
+      {
+          "tableTypeId": "Table03",
+          "amount": "60",
+          "matchingTime": 90,
+          "winnings": "108"
+      },
+      {
+          "tableTypeId": "Table04",
+          "amount": "120",
+          "matchingTime": 120,
+          "winnings": "216"
+      },
+      {
+          "tableTypeId": "Table05",
+          "amount": "340",
+          "matchingTime": 150,
+          "winnings": "612"
+      },
+      {
+          "tableTypeId": "Table06",
+          "amount": "670",
+          "matchingTime": 180,
+          "winnings": "1206"
+      },
+      {
+          "tableTypeId": "Table07",
+          "amount": "1250",
+          "matchingTime": 210,
+          "winnings": "2250"
+      },
+      {
+          "tableTypeId": "Table08",
+          "amount": "2800",
+          "matchingTime": 240,
+          "winnings": "5040"
+      },
+      {
+          "tableTypeId": "Table09",
+          "amount": "5000",
+          "matchingTime": 270,
+          "winnings": "9000"
+      },
+      {
+          "tableTypeId": "Table10",
+          "amount": "10000",
+          "matchingTime": 300,
+          "winnings": "18000"
+      }
+  ],
+  "onlineUsersCount": {
+      "isUserCountEnabled": true,
+      "totalUserCountOffset": 0,
+      "tableUserCountVariance": 5,
+      "tableUserCountOffsets": {
+          "Table00": 0
+      }
+  },
+  "matchMaking": {
+      "isIPRestrictionEnabled": false,
+      "isGeolocationRestrictionEnabled": false,
+      "isPushNotificationsEnabled": false,
+      "isSocketNotificationsEnabled": false,
+      "minimumJoinAmountForNotifications": "1000"
+  },
+  "features": {
+      "playAgainTimer": 5,
+      "turnTimer": 5
+  },
+  "messages": [
+      "Aastiin kaa saanp nikalaa",
+      "Kaleje par saanp lotane lagaa",
+      "Saanp suungh gayaa?",
+      "Saanp nikal gayaa, lakiir piit rahe ho?",
+      "Saanp bhii mar gaya or laathii bhii nahi tuti",
+      "Emotional Damage",
+      "Apun ich Bhagwan Hai",
+      "Maza Ayaa?",
+      "Adbhut!",
+      "Thodi sharam kar le re baba",
+      "Abhi maza ayega na, bhidu",
+      "Zing, Zing, Amazing!",
+      "Hello!",
+      "Kyu, bali chad gayi na!",
+      "Kamaal Ho gaya!",
+      "Boom!!!",
+      "Hurry up",
+      "Aree yaar…",
+      "Please don’t",
+      "Showtime!",
+      "Peeche dheko",
+      "Jalwa hai hamara"
+  ]
+}

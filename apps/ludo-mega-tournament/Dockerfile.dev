@@ -1,0 +1,11 @@
+FROM node:20-alpine3.19
+
+WORKDIR /root
+
+RUN npm install -g pnpm
+
+EXPOSE $LUDO_MEGA_TOURNAMENT_SERVICE_PORT
+
+EXPOSE $LUDO_MEGA_TOURNAMENT_SERVICE_PUBLIC_PORT
+
+CMD [ "pnpm", "start:dev", "ludo-mega-tournament" ]

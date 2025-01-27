@@ -1,0 +1,117 @@
+{
+  "underMaintenance": false,
+  "commissions": {
+    "gameCommissionByUsers": {
+      "2": "5",
+      "3": "5",
+      "4": "5",
+      "5": "10",
+      "6": "10"
+    }
+  },
+  "learnings": [
+    {
+      "title": "Learnings_008",
+      "url": "https://www.youtube.com/embed/MG0GM2F5wrA?fs=0&rel=0",
+      "type": "video",
+      "tag": "skillpatti,gameplay,pro,hindi,english"
+    },
+    {
+      "title": "Learnings_009",
+      "url": "https://www.youtube.com/embed/0NFibsrIGyI?fs=0&rel=0",
+      "type": "video",
+      "tag": "skillpatti,gameplay,pro,hindi,english"
+    }
+  ],
+  "tables": [
+    {
+      "initialBetAmount": "0.1",
+      "minJoinAmount": "5",
+      "potLimit": "30",
+      "gameType": "multiplayer",
+      "tableTypeId": "Table08"
+    },
+    {
+      "initialBetAmount": "0.2",
+      "minJoinAmount": "10",
+      "potLimit": "60",
+      "gameType": "multiplayer",
+      "tableTypeId": "Table02"
+    },
+    {
+      "initialBetAmount": "1",
+      "minJoinAmount": "50",
+      "potLimit": "300",
+      "gameType": "multiplayer",
+      "tableTypeId": "Table03"
+    },
+    {
+      "initialBetAmount": "2",
+      "minJoinAmount": "100",
+      "potLimit": "600",
+      "gameType": "multiplayer",
+      "tableTypeId": "Table04"
+    },
+    {
+      "initialBetAmount": "5",
+      "minJoinAmount": "250",
+      "potLimit": "1500",
+      "gameType": "multiplayer",
+      "tableTypeId": "Table05"
+    },
+    {
+      "initialBetAmount": "10",
+      "minJoinAmount": "500",
+      "potLimit": "3000",
+      "gameType": "multiplayer",
+      "tableTypeId": "Table06"
+    },
+    {
+      "initialBetAmount": "20",
+      "minJoinAmount": "1000",
+      "potLimit": "6000",
+      "gameType": "multiplayer",
+      "tableTypeId": "Table07"
+    }
+  ],
+  "onlineUsersCount": {
+    "isUserCountEnabled": true,
+    "totalUserCountOffset": 0,
+    "tableUserCountVariance": 5,
+    "tableUserCountOffsets": {
+      "Table01": 0
+    }
+  },
+  "matchMakingNotifications": {
+    "isPushNotificationsEnabled": false,
+    "isSocketNotificationsEnabled": true,
+    "minimumJoinAmountForNotifications": "1000"
+  },
+  "messages": [
+    "Blind master gogo",
+    "Aaya hu, kuch to leke jaunga",
+    "Blind cards wale, tera muh kala",
+    "Kyu aa gaya swad?",
+    "Karwa li beizzati?",
+    "Khatam Tata Bye Bye",
+    "Andher nagri chaupat raja",
+    "Kaisa laga mera mazak?",
+    "Maza Ayaa?",
+    "Abhi maza ayega na, bhidu",
+    "Kamaal Ho gaya!",
+    "Hurry up",
+    "Raise karo",
+    "Bas itna hi dum tha?",
+    "See your cards",
+    "Are ruko zara sabar karo",
+    "Are bhai, Cards to khulne de",
+    "Blind ke aage jeet hai",
+    "Kuch to gadbad hai daya",
+    "Showtime!",
+    "Ye haath mujhe de de Thakur",
+    "Ek blind sab pe bhari",
+    "Rebuy pe rebuy?",
+    "Risk hai toh ishq hai",
+    "Packer hai bhai packer"
+  ]
+}

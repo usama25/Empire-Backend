@@ -1,0 +1,51 @@
+{
+  "moduleFileExtensions": [
+    "js",
+    "json",
+    "ts"
+  ],
+  "rootDir": "../../../",
+  "testEnvironment": "node",
+  "testRegex": "/rest-api/.*.e2e-spec.ts$",
+  "moduleNameMapper": {
+    "@lib/fabzen-common/(.*)": "<rootDir>/libs/fabzen-common/src/$1",
+    "@lib/fabzen-common": "<rootDir>/libs/fabzen-common/src",
+    "^apps(|/.*)$": "<rootDir>/apps/$1"
+  },
+  "transform": {
+    "^.+\\.(t|j)s$": "ts-jest"
+  },
+  "coveragePathIgnorePatterns": [
+    "main.ts",
+    "test",
+    ".*\\.spec\\.ts$",
+    "<rootDir>/apps/socket-gateway/",
+    "<rootDir>/apps/sp-gameplay/",
+    "<rootDir>/apps/cbr-gameplay/",
+    "<rootDir>/apps/scheduler/",
+    "<rootDir>/apps/ludo-gameplay/",
+    "<rootDir>/apps/ludo-tournament/",
+    "<rootDir>/apps/sl-gameplay/",
+    "<rootDir>/apps/aviator-gameplay/",
+    "<rootDir>/apps/epl-gameplay/",
+    "<rootDir>/apps/ludo-mega-tournament/",
+    "<rootDir>/apps/re-gameplay/",
+    "<rootDir>/libs/fabzen-common/src/filters/",
+    "<rootDir>/libs/fabzen-common/src/guards/",
+    "<rootDir>/libs/fabzen-common/src/pipes/",
+    "<rootDir>/libs/fabzen-common/src/utils/",
+    "<rootDir>/libs/fabzen-common/src/async-api/validator/",
+    "<rootDir>/libs/fabzen-common/src/decorators/"
+  ],
+  "setupFilesAfterEnv": [
+    "./apps/rest-api/test/setup.ts"
+  ],
+  "coverageThreshold": {
+    "global": {
+      "branches": 10,
+      "functions": 10,
+      "lines": 10,
+      "statements": 10
+    }
+  }
+}

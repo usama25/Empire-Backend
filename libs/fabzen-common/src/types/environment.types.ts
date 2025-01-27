@@ -1,0 +1,31 @@
+export enum Environment {
+  development = 'development',
+  production = 'production',
+  test = 'test',
+  jest = 'jest',
+}
+
+export enum App {
+  auth = 'auth',
+  feedback = 'feedback',
+  gameRecord = 'gameRecord',
+  notification = 'notification',
+  payment = 'payment',
+  user = 'user',
+  verification = 'verification',
+  wallet = 'wallet',
+  promo = 'promo',
+  scheduler = 'scheduler',
+  jest = 'jest',
+  restApi = 'restApi',
+  socketGateway = 'socketGateway',
+  spGameplay = 'spGameplay',
+  ludoGameplay = 'ludoGameplay',
+  ludoTournament = 'ludoTournament',
+  ludoMegaTournament = 'ludoMegaTournament',
+  cbrGameplay = 'cbrGameplay',
+  slGameplay = 'slGameplay',
+  eplGameplay = 'eplGameplay',
+  aviator = 'aviator',
+  reGameplay = 'reGameplay',
+}

@@ -1,0 +1,178 @@
+{
+  "underMaintenance": false,
+  "gameplayDurationByUsers": { "2": 360, "3": 480, "4": 600 },
+  "board": {
+    "snakes": [
+      [
+        97,
+        21
+      ],
+      [
+        95,
+        76
+      ],
+      [
+        89,
+        53
+      ],
+      [
+        54,
+        31
+      ],
+      [
+        43,
+        17
+      ],
+      [
+        25,
+        8
+      ]
+    ],
+    "ladders": [
+      [
+        4,
+        23
+      ],
+      [
+        13,
+        56
+      ],
+      [
+        50,
+        69
+      ],
+      [
+        62,
+        81
+      ],
+      [
+        74,
+        93
+      ]
+    ]
+  },
+  "tables": [
+    {
+      "tableTypeId": "Table00",
+      "amount": "0",
+      "maxPlayer": 2,
+      "matchingTime": 10,
+      "winnings": ["1", "1", "1"]
+    },
+    {
+      "tableTypeId": "Table01",
+      "amount": "6",
+      "maxPlayer": 2,
+      "matchingTime": 30,
+      "winnings": ["10.2", "10.2", "10.2"]
+    },
+    {
+      "tableTypeId": "Table02",
+      "amount": "12",
+      "maxPlayer": 2,
+      "matchingTime": 60,
+      "winnings": ["20", "20", "20"]
+    },
+    {
+      "tableTypeId": "Table03",
+      "amount": "36",
+      "maxPlayer": 2,
+      "matchingTime": 90,
+      "winnings": ["60", "60", "60"]
+    },
+    {
+      "tableTypeId": "Table04",
+      "amount": "89",
+      "maxPlayer": 2,
+      "matchingTime": 120,
+      "winnings": ["150", "150", "150"]
+    },
+    {
+      "tableTypeId": "Table05",
+      "amount": "180",
+      "maxPlayer": 2,
+      "matchingTime": 150,
+      "winnings": ["306", "306", "306"]
+    },
+    {
+      "tableTypeId": "Table06",
+      "amount": "360",
+      "maxPlayer": 2,
+      "matchingTime": 180,
+      "winnings": ["612", "612", "612"]
+    },
+    {
+      "tableTypeId": "Table07",
+      "amount": "590",
+      "maxPlayer": 2,
+      "matchingTime": 210,
+      "winnings": ["1003", "1003", "1003"]
+    },
+    {
+      "tableTypeId": "Table08",
+      "amount": "1250",
+      "maxPlayer": 2,
+      "matchingTime": 240,
+      "winnings": ["2125", "2125", "2125"]
+    },
+    {
+      "tableTypeId": "Table09",
+      "amount": "2800",
+      "maxPlayer": 2,
+      "matchingTime": 270,
+      "winnings": ["5040", "5040", "5040"]
+    },
+    {
+      "tableTypeId": "Table10",
+      "amount": "5600",
+      "maxPlayer": 2,
+      "matchingTime": 300,
+      "winnings": ["10080", "10080", "10080"]
+    },
+    {
+      "tableTypeId": "Table11",
+      "amount": "11120",
+      "maxPlayer": 2,
+      "matchingTime": 300,
+      "winnings": ["20016", "20016", "20016"]
+    }
+  ],
+  "onlineUsersCount": {
+    "isUserCountEnabled": false,
+    "totalUserCountOffset": 0,
+    "tableUserCountVariance": 5,
+    "tableUserCountOffsets": { "Table00": 0 }
+  },
+  "matchMaking": {
+    "isIPRestrictionEnabled": false,
+    "isGeolocationRestrictionEnabled": false,
+    "isPushNotificationsEnabled": false,
+    "isSocketNotificationsEnabled": true,
+    "minimumJoinAmountForNotifications": "1000"
+  },
+  "features": { "playAgainTimer": 5, "turnTimer": 5 },
+  "messages": [
+    "Aastiin kaa saanp nikalaa",
+    "Kaleje par saanp lotane lagaa",
+    "Saanp suungh gayaa?",
+    "Saanp nikal gayaa, lakiir piit rahe ho?",
+    "Saanp bhii mar gaya or laathii bhii nahi tuti",
+    "Emotional Damage",
+    "Apun ich Bhagwan Hai",
+    "Maza Ayaa?",
+    "Adbhut!",
+    "Thodi sharam kar le re baba",
+    "Abhi maza ayega na, bhidu",
+    "Zing, Zing, Amazing!",
+    "Hello!",
+    "Kyu, bali chad gayi na!",
+    "Kamaal Ho gaya!",
+    "Boom!!!",
+    "Hurry up",
+    "Aree yaar…",
+    "Please don’t",
+    "Showtime!",
+    "Peeche dheko",
+    "Jalwa hai hamara"
+  ]
+}

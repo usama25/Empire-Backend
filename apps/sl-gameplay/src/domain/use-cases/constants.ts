@@ -1,0 +1,1 @@
+export const WAITING_TIME_EXTENSION_IN_SECONDS = 10;

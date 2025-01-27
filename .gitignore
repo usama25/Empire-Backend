@@ -1,0 +1,22 @@
+# Dependency directories
+node_modules/
+
+# IDE settings
+.vscode
+
+# Environment Variables
+.env
+
+# Build Outputs
+dist
+
+# Docker Volumes
+mongo_data
+redis_data
+localstack_data
+
+# Coverage Report
+coverage
+
+# SonarQube
+.scannerwork

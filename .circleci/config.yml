@@ -1,0 +1,1148 @@
+version: 2.1
+orbs:
+  ##  sonarcloud: sonarsource/sonarcloud@2.0.0
+  aws-ecr: circleci/aws-ecr@9.0.3
+  aws-ecs: circleci/aws-ecs@4.0.0
+  aws-s3: circleci/aws-s3@4.0.0
+  aws-cli: circleci/aws-cli@4.1.3
+  
+executors:
+  arm64_executor:
+    machine:
+      image: ubuntu-2004:current
+      resource_class: arm.large
+
+workflows:
+  build-and-deploy-to-eg-test:
+    jobs:
+
+      ##     - SonarCodeScan:
+      ##         context: SonarCloud
+      ##         filters:
+      ##           branches:
+      ##             ignore:
+      ##               - main
+      ##               - master
+
+      - aws-ecr/build_and_push_image:
+          executor: arm64_executor
+          name: BuildAndPushImage-eg-rest-pub-test
+          filters:
+            branches:
+              only:
+                - dev
+          tag: '${CIRCLE_SHA1}'
+          extra_build_args: --build-arg app=rest-api --platform linux/arm64
+          repo: eg-rest-pub-test
+          account_id: ${AWS_ACCOUNT_ID_STG}
+          region: ${AWS_REGION}
+          auth:
+            - aws-cli/setup:
+                region: ${AWS_REGION}
+                aws_access_key_id: AWS_ACCESS_KEY_ID_STG
+                aws_secret_access_key: AWS_SECRET_ACCESS_KEY_STG
+      - aws-ecs/deploy_service_update:
+          name: DeployToECS-eg-rest-pub-test
+          requires:
+            - BuildAndPushImage-eg-rest-pub-test
+          family: 'eg-rest-pub-test'
+          cluster: 'eg-rest-apis'
+          service_name: 'eg-rest-pub-test'
+          container_image_name_updates: 'container=eg-rest-pub-test,tag=${CIRCLE_SHA1}'
+          auth:
+            - aws-cli/setup:
+                region: ${AWS_REGION}
+                aws_access_key_id: AWS_ACCESS_KEY_ID_STG
+                aws_secret_access_key: AWS_SECRET_ACCESS_KEY_STG
+
+      - aws-ecr/build_and_push_image:
+          executor: arm64_executor
+          name: BuildAndPushImage-eg-auth-pr-test
+          filters:
+            branches:
+              only:
+                # -  ci-cd-dev
+                - dev
+          tag: '${CIRCLE_SHA1}'
+          extra_build_args: --build-arg app=auth --platform linux/arm64
+          repo: eg-auth-pr-test
+          account_id: ${AWS_ACCOUNT_ID_STG}
+          region: ${AWS_REGION}
+          auth:
+            - aws-cli/setup:
+                region: ${AWS_REGION}
+                aws_access_key_id: AWS_ACCESS_KEY_ID_STG
+                aws_secret_access_key: AWS_SECRET_ACCESS_KEY_STG
+      - aws-ecs/deploy_service_update:
+          name: DeployToECS-eg-auth-pr-test
+          requires:
+            - BuildAndPushImage-eg-auth-pr-test
+          family: 'eg-auth-pr-test'
+          cluster: 'eg-rest-apis'
+          service_name: 'eg-auth-pr-test'
+          container_image_name_updates: 'container=eg-auth-pr-test,tag=${CIRCLE_SHA1}'
+          auth:
+            - aws-cli/setup:
+                region: ${AWS_REGION}
+                aws_access_key_id: AWS_ACCESS_KEY_ID_STG
+                aws_secret_access_key: AWS_SECRET_ACCESS_KEY_STG
+
+      - aws-ecr/build_and_push_image:
+          executor: arm64_executor
+          name: BuildAndPushImage-eg-game-record-pr-test
+          filters:
+            branches:
+              only:
+                # -  ci-cd-dev
+                - dev
+          tag: '${CIRCLE_SHA1}'
+          extra_build_args: --build-arg app=game-record --platform linux/arm64
+          repo: eg-game-record-pr-test
+          account_id: ${AWS_ACCOUNT_ID_STG}
+          region: ${AWS_REGION}
+          auth:
+            - aws-cli/setup:
+                region: ${AWS_REGION}
+                aws_access_key_id: AWS_ACCESS_KEY_ID_STG
+                aws_secret_access_key: AWS_SECRET_ACCESS_KEY_STG
+      - aws-ecs/deploy_service_update:
+          name: DeployToECS-eg-game-record-pr-test
+          requires:
+            - BuildAndPushImage-eg-game-record-pr-test
+          family: 'eg-game-record-pr-test'
+          cluster: 'eg-rest-apis'
+          service_name: 'eg-game-record-pr-test'
+          container_image_name_updates: 'container=eg-game-record-pr-test,tag=${CIRCLE_SHA1}'
+          auth:
+            - aws-cli/setup:
+                region: ${AWS_REGION}
+                aws_access_key_id: AWS_ACCESS_KEY_ID_STG
+                aws_secret_access_key: AWS_SECRET_ACCESS_KEY_STG
+
+      - aws-ecr/build_and_push_image:
+          executor: arm64_executor
+          name: BuildAndPushImage-eg-socket-gateway-pub-test
+          filters:
+            branches:
+              only:
+                # -  ci-cd-dev
+                - dev
+          tag: '${CIRCLE_SHA1}'
+          extra_build_args: --build-arg app=socket-gateway --platform linux/arm64
+          repo: eg-socket-gateway-pub-test
+          account_id: ${AWS_ACCOUNT_ID_STG}
+          region: ${AWS_REGION}
+          auth:
+            - aws-cli/setup:
+                region: ${AWS_REGION}
+                aws_access_key_id: AWS_ACCESS_KEY_ID_STG
+                aws_secret_access_key: AWS_SECRET_ACCESS_KEY_STG
+      - aws-ecs/deploy_service_update:
+          name: DeployToECS-eg-socket-gateway-pub-test
+          requires:
+            - BuildAndPushImage-eg-socket-gateway-pub-test
+          family: 'eg-socket-gateway-pub-test'
+          cluster: 'eg-socket-gateway-apis'
+          service_name: 'eg-socket-gateway-pub-test'
+          container_image_name_updates: 'container=eg-socket-gateway-pub-test,tag=${CIRCLE_SHA1}'
+          auth:
+            - aws-cli/setup:
+                region: ${AWS_REGION}
+                aws_access_key_id: AWS_ACCESS_KEY_ID_STG
+                aws_secret_access_key: AWS_SECRET_ACCESS_KEY_STG
+      - aws-ecr/build_and_push_image:
+          executor: arm64_executor
+          name: BuildAndPushImage-eg-payment-pr-test
+          filters:
+            branches:
+              only:
+                # -  ci-cd-dev
+                - dev
+          tag: '${CIRCLE_SHA1}'
+          extra_build_args: --build-arg app=payment --platform linux/arm64
+          repo: eg-payment-pr-test
+          account_id: ${AWS_ACCOUNT_ID_STG}
+          region: ${AWS_REGION}
+          auth:
+            - aws-cli/setup:
+                region: ${AWS_REGION}
+                aws_access_key_id: AWS_ACCESS_KEY_ID_STG
+                aws_secret_access_key: AWS_SECRET_ACCESS_KEY_STG
+      - aws-ecs/deploy_service_update:
+          name: DeployToECS-eg-payment-pr-test
+          requires:
+            - BuildAndPushImage-eg-payment-pr-test
+          family: 'eg-payment-pr-test'
+          cluster: 'eg-rest-apis'
+          service_name: 'eg-payment-pr-test'
+          container_image_name_updates: 'container=eg-payment-pr-test,tag=${CIRCLE_SHA1}'
+          auth:
+            - aws-cli/setup:
+                region: ${AWS_REGION}
+                aws_access_key_id: AWS_ACCESS_KEY_ID_STG
+                aws_secret_access_key: AWS_SECRET_ACCESS_KEY_STG
+      - aws-ecr/build_and_push_image:
+          executor: arm64_executor
+          name: BuildAndPushImage-eg-wallet-pr-test 
+          filters:
+            branches:
+              only:
+                # -  ci-cd-dev
+                - dev
+          tag: '${CIRCLE_SHA1}'
+          extra_build_args: --build-arg app=wallet --platform linux/arm64
+          repo: eg-wallet-pr-test
+          account_id: ${AWS_ACCOUNT_ID_STG}
+          region: ${AWS_REGION}
+          auth:
+            - aws-cli/setup:
+                region: ${AWS_REGION}
+                aws_access_key_id: AWS_ACCESS_KEY_ID_STG
+                aws_secret_access_key: AWS_SECRET_ACCESS_KEY_STG
+      - aws-ecs/deploy_service_update:
+          name: DeployToECS-eg-wallet-pr-test
+          requires:
+            - BuildAndPushImage-eg-wallet-pr-test
+          family: 'eg-wallet-pr-test'
+          cluster: 'eg-rest-apis'
+          service_name: 'eg-wallet-pr-test'
+          container_image_name_updates: 'container=eg-wallet-pr-test,tag=${CIRCLE_SHA1}'
+          auth:
+            - aws-cli/setup:
+                region: ${AWS_REGION}
+                aws_access_key_id: AWS_ACCESS_KEY_ID_STG
+                aws_secret_access_key: AWS_SECRET_ACCESS_KEY_STG
+      - aws-ecr/build_and_push_image:
+          executor: arm64_executor
+          name: BuildAndPushImage-eg-notification-pr-test
+          filters:
+            branches:
+              only:
+                # -  ci-cd-dev
+                - dev
+          tag: '${CIRCLE_SHA1}'
+          extra_build_args: --build-arg app=notification --platform linux/arm64
+          repo: eg-notification-pr-test
+          account_id: ${AWS_ACCOUNT_ID_STG}
+          region: ${AWS_REGION}
+          auth:
+            - aws-cli/setup:
+                region: ${AWS_REGION}
+                aws_access_key_id: AWS_ACCESS_KEY_ID_STG
+                aws_secret_access_key: AWS_SECRET_ACCESS_KEY_STG
+      - aws-ecs/deploy_service_update:
+          name: DeployToECS-eg-notification-pr-test
+          requires:
+            - BuildAndPushImage-eg-notification-pr-test
+          family: 'eg-notification-pr-test'
+          cluster: 'eg-rest-apis'
+          service_name: 'eg-notification-pr-test'
+          container_image_name_updates: 'container=eg-notification-pr-test,tag=${CIRCLE_SHA1}'
+          auth:
+            - aws-cli/setup:
+                region: ${AWS_REGION}
+                aws_access_key_id: AWS_ACCESS_KEY_ID_STG
+                aws_secret_access_key: AWS_SECRET_ACCESS_KEY_STG
+      - aws-ecr/build_and_push_image:
+          executor: arm64_executor
+          name: BuildAndPushImage-eg-user-pr-test
+          filters:
+            branches:
+              only:
+                # -  ci-cd-dev
+                - dev
+          tag: '${CIRCLE_SHA1}'
+          extra_build_args: --build-arg app=user --platform linux/arm64
+          repo: eg-user-pr-test
+          account_id: ${AWS_ACCOUNT_ID_STG}
+          region: ${AWS_REGION}
+          auth:
+            - aws-cli/setup:
+                region: ${AWS_REGION}
+                aws_access_key_id: AWS_ACCESS_KEY_ID_STG
+                aws_secret_access_key: AWS_SECRET_ACCESS_KEY_STG
+      - aws-ecs/deploy_service_update:
+          name: DeployToECS-eg-user-pr-test
+          requires:
+            - BuildAndPushImage-eg-user-pr-test
+          family: 'eg-user-pr-test'
+          cluster: 'eg-rest-apis'
+          service_name: 'eg-user-pr-test'
+          container_image_name_updates: 'container=eg-user-pr-test,tag=${CIRCLE_SHA1}'
+          auth:
+            - aws-cli/setup:
+                region: ${AWS_REGION}
+                aws_access_key_id: AWS_ACCESS_KEY_ID_STG
+                aws_secret_access_key: AWS_SECRET_ACCESS_KEY_STG
+      # - aws-ecr/build_and_push_image:
+      #     executor: arm64_executor
+      #     name: BuildAndPushImage-eg-scheduler-pr-test
+      #     filters:
+      #        branches:
+      #          only:
+      #            # -  ci-cd-dev
+      #            - dev
+      #     tag: '${CIRCLE_SHA1}'
+      #     extra_build_args: --build-arg app=scheduler --platform linux/arm64
+      #     repo: eg-scheduler-pr-test
+      #     account_id: ${AWS_ACCOUNT_ID_STG}
+      #     region: ${AWS_REGION}
+      #     auth:
+      #        - aws-cli/setup:
+      #            region: ${AWS_REGION}
+      #            aws_access_key_id: AWS_ACCESS_KEY_ID_STG
+      #            aws_secret_access_key: AWS_SECRET_ACCESS_KEY_STG
+      # - aws-ecs/deploy_service_update:
+      #      name: DeployToECS-eg-scheduler-pr-test
+      #      requires:
+      #        - BuildAndPushImage-eg-scheduler-pr-test
+      #      family: 'eg-scheduler-pr-test'
+      #      cluster: 'eg-rest-apis'
+      #      service_name: 'eg-scheduler-pr-test'
+      #      container_image_name_updates: 'container=eg-scheduler-pr-test,tag=${CIRCLE_SHA1}'
+      #      auth:
+      #        - aws-cli/setup:
+      #            region: ${AWS_REGION}
+      #            aws_access_key_id: AWS_ACCESS_KEY_ID_STG
+      #            aws_secret_access_key: AWS_SECRET_ACCESS_KEY_STG
+      #sp-gameplay-apis-deployment-----------------------------------------##
+
+      - aws-ecr/build_and_push_image:
+          executor: arm64_executor
+          name: BuildAndPushImage-sp-gameplay-pub-test
+          filters:
+            branches:
+              only:
+                # -  ci-cd-dev
+                - dev
+          tag: '${CIRCLE_SHA1}'
+          extra_build_args: --build-arg app=sp-gameplay --platform linux/arm64
+          repo: sp-gameplay-pub-test
+          account_id: ${AWS_ACCOUNT_ID_STG}
+          region: ${AWS_REGION}
+          auth:
+            - aws-cli/setup:
+                region: ${AWS_REGION}
+                aws_access_key_id: AWS_ACCESS_KEY_ID_STG
+                aws_secret_access_key: AWS_SECRET_ACCESS_KEY_STG
+      - aws-ecs/deploy_service_update:
+          name: DeployToECS-sp-gameplay-pub-test
+          requires:
+            - BuildAndPushImage-sp-gameplay-pub-test
+          family: 'sp-gameplay-pub-test'
+          cluster: 'sp-gameplay-apis'
+          service_name: 'sp-gameplay-pub-test'
+          container_image_name_updates: 'container=sp-gameplay-pub-test,tag=${CIRCLE_SHA1}'
+          auth:
+            - aws-cli/setup:
+                region: ${AWS_REGION}
+                aws_access_key_id: AWS_ACCESS_KEY_ID_STG
+                aws_secret_access_key: AWS_SECRET_ACCESS_KEY_STG
+
+      #cb-gameplay-apis-deployment-----------------------------------------##
+      - aws-ecr/build_and_push_image:
+          executor: arm64_executor
+          name: BuildAndPushImage-cb-gameplay-pub-test
+          filters:
+            branches:
+              only:
+                # -  ci-cd-dev
+                - dev
+          tag: '${CIRCLE_SHA1}'
+          extra_build_args: --build-arg app=cbr-gameplay --platform linux/arm64
+          repo: cb-gameplay-pub-test
+          account_id: ${AWS_ACCOUNT_ID_STG}
+          region: ${AWS_REGION}
+          auth:
+            - aws-cli/setup:
+                region: ${AWS_REGION}
+                aws_access_key_id: AWS_ACCESS_KEY_ID_STG
+                aws_secret_access_key: AWS_SECRET_ACCESS_KEY_STG
+      - aws-ecs/deploy_service_update:
+          name: DeployToECS-cb-gameplay-pub-test
+          requires:
+            - BuildAndPushImage-cb-gameplay-pub-test
+          family: 'cb-gameplay-pub-test'
+          cluster: 'cb-gameplay-apis'
+          service_name: 'cb-gameplay-pub-test'
+          container_image_name_updates: 'container=cb-gameplay-pub-test,tag=${CIRCLE_SHA1}'
+          auth:
+            - aws-cli/setup:
+                region: ${AWS_REGION}
+                aws_access_key_id: AWS_ACCESS_KEY_ID_STG
+                aws_secret_access_key: AWS_SECRET_ACCESS_KEY_STG
+
+      #   #ludo-gameplay-apis---------------------------------------------------------##
+
+      - aws-ecr/build_and_push_image:
+          executor: arm64_executor
+          name: BuildAndPushImage-ludo-gameplay-pub-test
+          filters:
+            branches:
+              only:
+                # -  ci-cd-dev
+                - dev
+          tag: '${CIRCLE_SHA1}'
+          extra_build_args: --build-arg app=ludo-gameplay --platform linux/arm64
+          repo: ludo-gameplay-pub-test
+          account_id: ${AWS_ACCOUNT_ID_STG}
+          region: ${AWS_REGION}
+          auth:
+            - aws-cli/setup:
+                region: ${AWS_REGION}
+                aws_access_key_id: AWS_ACCESS_KEY_ID_STG
+                aws_secret_access_key: AWS_SECRET_ACCESS_KEY_STG
+      - aws-ecs/deploy_service_update:
+          name: DeployToECS-ludo-gameplay-pub-test
+          requires:
+            - BuildAndPushImage-ludo-gameplay-pub-test
+          family: 'ludo-gameplay-pub-test'
+          cluster: 'ludo-gameplay-apis'
+          service_name: 'ludo-gameplay-pub-test'
+          container_image_name_updates: 'container=ludo-gameplay-pub-test,tag=${CIRCLE_SHA1}'
+          auth:
+            - aws-cli/setup:
+                region: ${AWS_REGION}
+                aws_access_key_id: AWS_ACCESS_KEY_ID_STG
+                aws_secret_access_key: AWS_SECRET_ACCESS_KEY_STG
+
+      - aws-ecr/build_and_push_image:
+          executor: arm64_executor
+          name: BuildAndPushImage-ludo-tournament-pr-test
+          filters:
+            branches:
+              only:
+                # -  ci-cd-dev
+                - dev
+          tag: '${CIRCLE_SHA1}'
+          extra_build_args: --build-arg app=ludo-tournament --platform linux/arm64
+          repo: ludo-tournament-pr-test
+          account_id: ${AWS_ACCOUNT_ID_STG}
+          region: ${AWS_REGION}
+          auth:
+            - aws-cli/setup:
+                region: ${AWS_REGION}
+                aws_access_key_id: AWS_ACCESS_KEY_ID_STG
+                aws_secret_access_key: AWS_SECRET_ACCESS_KEY_STG
+      - aws-ecs/deploy_service_update:
+          name: DeployToECS-ludo-tournament-pr-test
+          requires:
+            - BuildAndPushImage-ludo-tournament-pr-test
+          family: 'ludo-tournament-pr-test'
+          cluster: 'ludo-gameplay-apis'
+          service_name: 'ludo-tournament-pr-test'
+          container_image_name_updates: 'container=ludo-tournament-pr-test,tag=${CIRCLE_SHA1}'
+          auth:
+            - aws-cli/setup:
+                region: ${AWS_REGION}
+                aws_access_key_id: AWS_ACCESS_KEY_ID_STG
+                aws_secret_access_key: AWS_SECRET_ACCESS_KEY_STG
+
+      - aws-ecr/build_and_push_image:
+          executor: arm64_executor
+          name: BuildAndPushImage-sl-gameplay-test
+          filters:
+            branches:
+              only:
+                # -  ci-cd-dev
+                - dev
+          tag: '${CIRCLE_SHA1}'
+          extra_build_args: --build-arg app=sl-gameplay --platform linux/arm64
+          repo: sl-gameplay-test
+          account_id: ${AWS_ACCOUNT_ID_STG}
+          region: ${AWS_REGION}
+          auth:
+            - aws-cli/setup:
+                region: ${AWS_REGION}
+                aws_access_key_id: AWS_ACCESS_KEY_ID_STG
+                aws_secret_access_key: AWS_SECRET_ACCESS_KEY_STG
+      - aws-ecs/deploy_service_update:
+          name: DeployToECS-sl-gameplay-test
+          requires:
+            - BuildAndPushImage-sl-gameplay-test
+          family: 'sl-gameplay-pub-test'
+          cluster: 'sl-gameplay-apis'
+          service_name: 'sl-gameplay-test'
+          container_image_name_updates: 'container=sl-gameplay-pub-test,tag=${CIRCLE_SHA1}'
+          auth:
+            - aws-cli/setup:
+                region: ${AWS_REGION}
+                aws_access_key_id: AWS_ACCESS_KEY_ID_STG
+                aws_secret_access_key: AWS_SECRET_ACCESS_KEY_STG
+
+      - aws-ecr/build_and_push_image:
+          executor: arm64_executor
+          name: BuildAndPushImage-ludo-mega-tournament-test
+          filters:
+            branches:
+              only:
+                # -  ci-cd-dev
+                - dev
+          tag: '${CIRCLE_SHA1}'
+          extra_build_args: --build-arg app=ludo-mega-tournament --platform linux/arm64
+          repo: ludo-mega-tournament-test
+          account_id: ${AWS_ACCOUNT_ID_STG}
+          region: ${AWS_REGION}
+          auth:
+            - aws-cli/setup:
+                region: ${AWS_REGION}
+                aws_access_key_id: AWS_ACCESS_KEY_ID_STG
+                aws_secret_access_key: AWS_SECRET_ACCESS_KEY_STG
+      - aws-ecs/deploy_service_update:
+          name: DeployToECS-ludo-mega-tournament-test
+          requires:
+            - BuildAndPushImage-ludo-mega-tournament-test
+          family: 'ludo-mega-tournament-test'
+          cluster: 'ludo-gameplay-apis'
+          service_name: 'ludo-mega-tournament-test'
+          container_image_name_updates: 'container=ludo-mega-tournament-test,tag=${CIRCLE_SHA1}'
+          auth:
+            - aws-cli/setup:
+                region: ${AWS_REGION}
+                aws_access_key_id: AWS_ACCESS_KEY_ID_STG
+                aws_secret_access_key: AWS_SECRET_ACCESS_KEY_STG
+
+      - aws-ecr/build_and_push_image:
+          executor: arm64_executor
+          name: BuildAndPushImage-aviator-gameplay-pub-test
+          filters:
+            branches:
+              only:
+                # -  ci-cd-dev
+                - dev
+          tag: '${CIRCLE_SHA1}'
+          extra_build_args: --build-arg app=aviator-gameplay --platform linux/arm64
+          repo: aviator-gameplay-pub-test
+          account_id: ${AWS_ACCOUNT_ID_STG}
+          region: ${AWS_REGION}
+          auth:
+            - aws-cli/setup:
+                region: ${AWS_REGION}
+                aws_access_key_id: AWS_ACCESS_KEY_ID_STG
+                aws_secret_access_key: AWS_SECRET_ACCESS_KEY_STG
+      - aws-ecs/deploy_service_update:
+          name: DeployToECS-aviator-gameplay-pub-test
+          requires:
+            - BuildAndPushImage-aviator-gameplay-pub-test
+          family: 'aviator-gameplay-pub-test'
+          cluster: 'aviator-gameplay-apis'
+          service_name: 'aviator-gameplay-pub-test'
+          container_image_name_updates: 'container=aviator-gameplay-pub-test,tag=${CIRCLE_SHA1}'
+          auth:
+            - aws-cli/setup:
+                region: ${AWS_REGION}
+                aws_access_key_id: AWS_ACCESS_KEY_ID_STG
+                aws_secret_access_key: AWS_SECRET_ACCESS_KEY_STG
+
+      - aws-ecr/build_and_push_image:
+          executor: arm64_executor
+          name: BuildAndPushImage-re-gameplay-pub-test
+          filters:
+            branches:
+              only:
+                # -  ci-cd-dev
+                - dev
+          tag: '${CIRCLE_SHA1}'
+          extra_build_args: --build-arg app=re-gameplay --platform linux/arm64
+          repo: re-gameplay-pub-test
+          account_id: ${AWS_ACCOUNT_ID_STG}
+          region: ${AWS_REGION}
+          auth:
+            - aws-cli/setup:
+                region: ${AWS_REGION}
+                aws_access_key_id: AWS_ACCESS_KEY_ID_STG
+                aws_secret_access_key: AWS_SECRET_ACCESS_KEY_STG
+
+      - aws-ecs/deploy_service_update:
+          name: DeployToECS-re-gameplay-pub-test
+          requires:
+            - BuildAndPushImage-re-gameplay-pub-test
+          family: 're-gameplay-pub-test'
+          cluster: 're-gameplay-apis'
+          service_name: 're-gameplay-pub-test'
+          container_image_name_updates: 'container=re-gameplay-pub-test,tag=${CIRCLE_SHA1}'
+          auth:
+            - aws-cli/setup:
+                region: ${AWS_REGION}
+                aws_access_key_id: AWS_ACCESS_KEY_ID_STG
+                aws_secret_access_key: AWS_SECRET_ACCESS_KEY_STG
+
+      - aws-ecr/build_and_push_image:
+          executor: arm64_executor
+          name: BuildAndPushImage-epl-gameplay-pub-test
+          filters:
+            branches:
+              only:
+                # -  ci-cd-dev
+                - dev
+          tag: '${CIRCLE_SHA1}'
+          extra_build_args: --build-arg app=epl-gameplay --platform linux/arm64
+          repo: epl-gameplay-pub-test
+          account_id: ${AWS_ACCOUNT_ID_STG}
+          region: ${AWS_REGION}
+          auth:
+            - aws-cli/setup:
+                region: ${AWS_REGION}
+                aws_access_key_id: AWS_ACCESS_KEY_ID_STG
+                aws_secret_access_key: AWS_SECRET_ACCESS_KEY_STG
+
+      - aws-ecs/deploy_service_update:
+          name: DeployToECS-epl-gameplay-pub-test
+          requires:
+            - BuildAndPushImage-epl-gameplay-pub-test
+          family: 'epl-gameplay-pub-test'
+          cluster: 'epl-gameplay-apis'
+          service_name: 'epl-gameplay-pub-test'
+          container_image_name_updates: 'container=epl-gameplay-pub-test,tag=${CIRCLE_SHA1}'
+          auth:
+            - aws-cli/setup:
+                region: ${AWS_REGION}
+                aws_access_key_id: AWS_ACCESS_KEY_ID_STG
+                aws_secret_access_key: AWS_SECRET_ACCESS_KEY_STG
+
+      # - aws-ecr/build_and_push_image:
+      #     executor: arm64_executor
+      #     name: BuildAndPushImage-aviator-gameplay-test
+      #     filters:
+      #       branches:
+      #         only:
+      #           # -  ci-cd-dev
+      #           - dev
+      #     tag: '${CIRCLE_SHA1}'
+      #     extra_build_args: --build-arg app=aviator-gameplay --platform linux/arm64
+      #     repo: aviator-gameplay-test
+      #     account_id: ${AWS_ACCOUNT_ID_STG}
+      #     region: ${AWS_REGION}
+      #     auth:
+      #       - aws-cli/setup:
+      #           region: ${AWS_REGION}
+      #           aws_access_key_id: AWS_ACCESS_KEY_ID_STG
+      #           aws_secret_access_key: AWS_SECRET_ACCESS_KEY_STG
+      # - aws-ecs/deploy_service_update:
+      #     name: DeployToECS-aviator-gameplay-test
+      #     requires:
+      #       - BuildAndPushImage-aviator-gameplay-test
+      #     family: 'aviator-gameplay-test'
+      #     cluster: 'ludo-gameplay-apis'
+      #     service_name: 'aviator-gameplay-test'
+      #     container_image_name_updates: 'container=aviator-gameplay-test,tag=${CIRCLE_SHA1}'
+      #     auth:
+      #       - aws-cli/setup:
+      #           region: ${AWS_REGION}
+      #           aws_access_key_id: AWS_ACCESS_KEY_ID_STG
+      #           aws_secret_access_key: AWS_SECRET_ACCESS_KEY_STG
+
+  #######################PRODUCTION CONFIG###############################################################################################
+  build-and-deploy-to-eg-prod:
+    jobs:
+      - hold:
+          type: approval
+          requires:
+            - BuildAndPushImage-circleci-fake-hold-Prod
+      - aws-ecr/build_and_push_image:
+          name: BuildAndPushImage-circleci-fake-hold-Prod
+          filters:
+            branches:
+              only:
+                - main
+          tag: '${CIRCLE_SHA1}'
+          extra_build_args: --build-arg app=promo
+          repo: circleci-fake-hold
+          account_id: ${AWS_ACCOUNT_ID_PROD}
+          region: ${AWS_REGION}
+          auth:
+            - aws-cli/setup:
+                region: ${AWS_REGION}
+                aws_access_key_id: AWS_ACCESS_KEY_ID_PROD
+                aws_secret_access_key: AWS_SECRET_ACCESS_KEY_PROD
+
+      - aws-ecr/build_and_push_image:
+          name: BuildAndPushImage-eg-rest-pub-prod
+          filters:
+            branches:
+              only:
+                - main
+          requires:
+            - hold
+          tag: '${CIRCLE_SHA1}'
+          extra_build_args: --build-arg app=rest-api
+          repo: eg-rest-pub-prod
+          account_id: ${AWS_ACCOUNT_ID_PROD}
+          region: ${AWS_REGION}
+          auth:
+            - aws-cli/setup:
+                region: ${AWS_REGION}
+                aws_access_key_id: AWS_ACCESS_KEY_ID_PROD
+                aws_secret_access_key: AWS_SECRET_ACCESS_KEY_PROD
+      - aws-ecs/deploy_service_update:
+          name: DeployToECS-eg-rest-pub-prod
+          requires:
+            - BuildAndPushImage-eg-rest-pub-prod
+          family: 'eg-rest-pub-prod'
+          cluster: 'eg-rest-apis-prod'
+          service_name: 'eg-rest-pub-prod'
+          container_image_name_updates: 'container=eg-rest-pub-prod,tag=${CIRCLE_SHA1}'
+          auth:
+            - aws-cli/setup:
+                region: ${AWS_REGION}
+                aws_access_key_id: AWS_ACCESS_KEY_ID_PROD
+                aws_secret_access_key: AWS_SECRET_ACCESS_KEY_PROD
+
+      # - aws-ecr/build_and_push_image:
+      #      name: BuildAndPushImage-eg-auth-pr-prod
+      #      filters:
+      #        branches:
+      #          only:
+      #            - main
+      #      requires:
+      #        - hold
+      #      tag: '${CIRCLE_SHA1}'
+      #      extra_build_args: --build-arg app=auth
+      #      repo: eg-auth-pr-prod
+      #      account_id: ${AWS_ACCOUNT_ID_PROD}
+      #      region: ${AWS_REGION}
+      #      auth:
+      #        - aws-cli/setup:
+      #            region: ${AWS_REGION}
+      #            aws_access_key_id: AWS_ACCESS_KEY_ID_PROD
+      #            aws_secret_access_key: AWS_SECRET_ACCESS_KEY_PROD
+      # - aws-ecs/deploy_service_update:
+      #      name: DeployToECS-eg-auth-pr-prod
+      #      requires:
+      #        - BuildAndPushImage-eg-auth-pr-prod
+      #      family: 'eg-auth-pr-prod'
+      #      cluster: 'eg-rest-apis-prod'
+      #      service_name: 'eg-auth-pr-prod'
+      #      container_image_name_updates: 'container=eg-auth-pr-prod,tag=${CIRCLE_SHA1}'
+      #      auth:
+      #        - aws-cli/setup:
+      #            region: ${AWS_REGION}
+      #            aws_access_key_id: AWS_ACCESS_KEY_ID_PROD
+      #            aws_secret_access_key: AWS_SECRET_ACCESS_KEY_PROD
+
+      # - aws-ecr/build_and_push_image:
+      #      name: BuildAndPushImage-eg-game-record-pr-prod
+      #      filters:
+      #        branches:
+      #          only:
+      #            # -  ci-cd-main
+      #            - main
+      #      requires:
+      #        - hold
+      #      tag: '${CIRCLE_SHA1}'
+      #      extra_build_args: --build-arg app=game-record
+      #      repo: eg-game-record-pr-prod
+      #      account_id: ${AWS_ACCOUNT_ID_PROD}
+      #      region: ${AWS_REGION}
+      #      auth:
+      #        - aws-cli/setup:
+      #            region: ${AWS_REGION}
+      #            aws_access_key_id: AWS_ACCESS_KEY_ID_PROD
+      #            aws_secret_access_key: AWS_SECRET_ACCESS_KEY_PROD
+      # - aws-ecs/deploy_service_update:
+      #      name: DeployToECS-eg-game-record-pr-prod
+      #      requires:
+      #        - BuildAndPushImage-eg-game-record-pr-prod
+      #      family: 'eg-game-record-pr-prod'
+      #      cluster: 'eg-rest-apis-prod'
+      #      service_name: 'eg-game-record-pr-prod'
+      #      container_image_name_updates: 'container=eg-game-record-pr-prod,tag=${CIRCLE_SHA1}'
+      #      auth:
+      #        - aws-cli/setup:
+      #            region: ${AWS_REGION}
+      #            aws_access_key_id: AWS_ACCESS_KEY_ID_PROD
+      #            aws_secret_access_key: AWS_SECRET_ACCESS_KEY_PROD
+
+      # - aws-ecr/build_and_push_image:
+      #      name: BuildAndPushImage-eg-socket-gateway-pub-prod
+      #      filters:
+      #        branches:
+      #          only:
+      #            # -  ci-cd-main
+      #            - main
+      #      requires:
+      #        - hold
+      #      tag: '${CIRCLE_SHA1}'
+      #      extra_build_args: --build-arg app=socket-gateway
+      #      repo: eg-socket-gateway-pub-prod
+      #      account_id: ${AWS_ACCOUNT_ID_PROD}
+      #      region: ${AWS_REGION}
+      #      auth:
+      #        - aws-cli/setup:
+      #            region: ${AWS_REGION}
+      #            aws_access_key_id: AWS_ACCESS_KEY_ID_PROD
+      #            aws_secret_access_key: AWS_SECRET_ACCESS_KEY_PROD
+      # - aws-ecs/deploy_service_update:
+      #      name: DeployToECS-eg-socket-gateway-pub-prod
+      #      requires:
+      #        - BuildAndPushImage-eg-socket-gateway-pub-prod
+      #      family: 'eg-socket-gateway-pub-prod'
+      #      cluster: 'eg-socket-gateway-apis-prod'
+      #      service_name: 'eg-socket-gateway-pub-prod'
+      #      container_image_name_updates: 'container=eg-socket-gateway-pub-prod,tag=${CIRCLE_SHA1}'
+      #      auth:
+      #        - aws-cli/setup:
+      #            region: ${AWS_REGION}
+      #            aws_access_key_id: AWS_ACCESS_KEY_ID_PROD
+      #            aws_secret_access_key: AWS_SECRET_ACCESS_KEY_PROD
+      - aws-ecr/build_and_push_image:
+          name: BuildAndPushImage-eg-payment-pr-prod
+          filters:
+            branches:
+              only:
+                # -  ci-cd-main
+                - main
+          requires:
+            - hold
+          tag: '${CIRCLE_SHA1}'
+          extra_build_args: --build-arg app=payment
+          repo: eg-payment-pr-prod
+          account_id: ${AWS_ACCOUNT_ID_PROD}
+          region: ${AWS_REGION}
+          auth:
+            - aws-cli/setup:
+                region: ${AWS_REGION}
+                aws_access_key_id: AWS_ACCESS_KEY_ID_PROD
+                aws_secret_access_key: AWS_SECRET_ACCESS_KEY_PROD
+      - aws-ecs/deploy_service_update:
+          name: DeployToECS-eg-payment-pr-prod
+          requires:
+            - BuildAndPushImage-eg-payment-pr-prod
+          family: 'eg-payment-pr-prod'
+          cluster: 'eg-rest-apis-prod'
+          service_name: 'eg-payment-pr-prod'
+          container_image_name_updates: 'container=eg-payment-pr-prod,tag=${CIRCLE_SHA1}'
+          auth:
+            - aws-cli/setup:
+                region: ${AWS_REGION}
+                aws_access_key_id: AWS_ACCESS_KEY_ID_PROD
+                aws_secret_access_key: AWS_SECRET_ACCESS_KEY_PROD
+      # - aws-ecr/build_and_push_image:
+      #      name: BuildAndPushImage-eg-wallet-pr-prod
+      #      filters:
+      #        branches:
+      #          only:
+      #            # -  ci-cd-main
+      #            - main
+      #      requires:
+      #        - hold
+      #      tag: '${CIRCLE_SHA1}'
+      #      extra_build_args: --build-arg app=wallet
+      #      repo: eg-wallet-pr-prod
+      #      account_id: ${AWS_ACCOUNT_ID_PROD}
+      #      region: ${AWS_REGION}
+      #      auth:
+      #        - aws-cli/setup:
+      #            region: ${AWS_REGION}
+      #            aws_access_key_id: AWS_ACCESS_KEY_ID_PROD
+      #            aws_secret_access_key: AWS_SECRET_ACCESS_KEY_PROD
+      # - aws-ecs/deploy_service_update:
+      #      name: DeployToECS-eg-wallet-pr-prod
+      #      requires:
+      #        - BuildAndPushImage-eg-wallet-pr-prod
+      #      family: 'eg-wallet-pr-prod'
+      #      cluster: 'eg-rest-apis-prod'
+      #      service_name: 'eg-wallet-pr-prod'
+      #      container_image_name_updates: 'container=eg-wallet-pr-prod,tag=${CIRCLE_SHA1}'
+      #      auth:
+      #        - aws-cli/setup:
+      #            region: ${AWS_REGION}
+      #            aws_access_key_id: AWS_ACCESS_KEY_ID_PROD
+      #            aws_secret_access_key: AWS_SECRET_ACCESS_KEY_PROD
+      # - aws-ecr/build_and_push_image:
+      #      name: BuildAndPushImage-eg-notification-pr-prod
+      #      filters:
+      #        branches:
+      #          only:
+      #            # -  ci-cd-main
+      #            - main
+      #      requires:
+      #        - hold
+      #      tag: '${CIRCLE_SHA1}'
+      #      extra_build_args: --build-arg app=notification
+      #      repo: eg-notification-pr-prod
+      #      account_id: ${AWS_ACCOUNT_ID_PROD}
+      #      region: ${AWS_REGION}
+      #      auth:
+      #        - aws-cli/setup:
+      #            region: ${AWS_REGION}
+      #            aws_access_key_id: AWS_ACCESS_KEY_ID_PROD
+      #            aws_secret_access_key: AWS_SECRET_ACCESS_KEY_PROD
+      # - aws-ecs/deploy_service_update:
+      #      name: DeployToECS-eg-notification-pr-prod
+      #      requires:
+      #        - BuildAndPushImage-eg-notification-pr-prod
+      #      family: 'eg-notification-pr-prod'
+      #      cluster: 'eg-rest-apis-prod'
+      #      service_name: 'eg-notification-pr-prod'
+      #      container_image_name_updates: 'container=eg-notification-pr-prod,tag=${CIRCLE_SHA1}'
+      #      auth:
+      #        - aws-cli/setup:
+      #            region: ${AWS_REGION}
+      #            aws_access_key_id: AWS_ACCESS_KEY_ID_PROD
+      #            aws_secret_access_key: AWS_SECRET_ACCESS_KEY_PROD
+      # - aws-ecr/build_and_push_image:
+      #      name: BuildAndPushImage-eg-user-pr-prod
+      #      filters:
+      #        branches:
+      #          only:
+      #            # -  ci-cd-main
+      #            - main
+      #      requires:
+      #        - hold
+      #      tag: '${CIRCLE_SHA1}'
+      #      extra_build_args: --build-arg app=user
+      #      repo: eg-user-pr-prod
+      #      account_id: ${AWS_ACCOUNT_ID_PROD}
+      #      region: ${AWS_REGION}
+      #      auth:
+      #        - aws-cli/setup:
+      #            region: ${AWS_REGION}
+      #            aws_access_key_id: AWS_ACCESS_KEY_ID_PROD
+      #            aws_secret_access_key: AWS_SECRET_ACCESS_KEY_PROD
+      # - aws-ecs/deploy_service_update:
+      #      name: DeployToECS-eg-user-pr-prod
+      #      requires:
+      #        - BuildAndPushImage-eg-user-pr-prod
+      #      family: 'eg-user-pr-prod'
+      #      cluster: 'eg-rest-apis-prod'
+      #      service_name: 'eg-user-pr-prod'
+      #      container_image_name_updates: 'container=eg-user-pr-prod,tag=${CIRCLE_SHA1}'
+      #      auth:
+      #        - aws-cli/setup:
+      #            region: ${AWS_REGION}
+      #            aws_access_key_id: AWS_ACCESS_KEY_ID_PROD
+      #            aws_secret_access_key: AWS_SECRET_ACCESS_KEY_PROD
+
+      #  # sp-gameplay-apis-deployment-----------------------------------------##
+      # - aws-ecr/build_and_push_image:
+      #      name: BuildAndPushImage-sp-gameplay-pub-prod
+      #      filters:
+      #        branches:
+      #          only:
+      #            # -  ci-cd-main
+      #            - main
+      #      requires:
+      #        - hold
+      #      tag: '${CIRCLE_SHA1}'
+      #      extra_build_args: --build-arg app=sp-gameplay
+      #      repo: sp-gameplay-pub-prod
+      #      account_id: ${AWS_ACCOUNT_ID_PROD}
+      #      region: ${AWS_REGION}
+      #      auth:
+      #        - aws-cli/setup:
+      #            region: ${AWS_REGION}
+      #            aws_access_key_id: AWS_ACCESS_KEY_ID_PROD
+      #            aws_secret_access_key: AWS_SECRET_ACCESS_KEY_PROD
+      # - aws-ecs/deploy_service_update:
+      #      name: DeployToECS-sp-gameplay-pub-prod
+      #      requires:
+      #        - BuildAndPushImage-sp-gameplay-pub-prod
+      #      family: 'sp-gameplay-pub-prod'
+      #      cluster: 'sp-gameplay-apis-prod'
+      #      service_name: 'sp-gameplay-pub-prod'
+      #      container_image_name_updates: 'container=sp-gameplay-pub-prod,tag=${CIRCLE_SHA1}'
+      #      auth:
+      #        - aws-cli/setup:
+      #            region: ${AWS_REGION}
+      #            aws_access_key_id: AWS_ACCESS_KEY_ID_PROD
+      #            aws_secret_access_key: AWS_SECRET_ACCESS_KEY_PROD
+
+      # # cb-gameplay-apis-deployment-----------------------------------------##
+      # - aws-ecr/build_and_push_image:
+      #     name: BuildAndPushImage-cb-gameplay-pub-prod
+      #     filters:
+      #       branches:
+      #         only:
+      #           # -  ci-cd-main
+      #           - main
+      #     requires:
+      #       - hold
+      #     tag: '${CIRCLE_SHA1}'
+      #     extra_build_args: --build-arg app=cbr-gameplay
+      #     repo: cb-gameplay-pub-prod
+      #     account_id: ${AWS_ACCOUNT_ID_PROD}
+      #     region: ${AWS_REGION}
+      #     auth:
+      #       - aws-cli/setup:
+      #           region: ${AWS_REGION}
+      #           aws_access_key_id: AWS_ACCESS_KEY_ID_PROD
+      #           aws_secret_access_key: AWS_SECRET_ACCESS_KEY_PROD
+      # - aws-ecs/deploy_service_update:
+      #     name: DeployToECS-cb-gameplay-pub-prod
+      #     requires:
+      #       - BuildAndPushImage-cb-gameplay-pub-prod
+      #     family: 'cb-gameplay-pub-prod'
+      #     cluster: 'cb-gameplay-apis-prod'
+      #     service_name: 'cb-gameplay-pub-prod'
+      #     container_image_name_updates: 'container=cb-gameplay-pub-prod,tag=${CIRCLE_SHA1}'
+      #     auth:
+      #       - aws-cli/setup:
+      #           region: ${AWS_REGION}
+      #           aws_access_key_id: AWS_ACCESS_KEY_ID_PROD
+      #           aws_secret_access_key: AWS_SECRET_ACCESS_KEY_PROD
+
+      # ludo-gameplay-apis---------------------------------------------------------##
+      # - aws-ecr/build_and_push_image:
+      #     name: BuildAndPushImage-ludo-gameplay-pub-prod
+      #     filters:
+      #       branches:
+      #         only:
+      #           # -  ci-cd-main
+      #           - main
+      #     requires:
+      #       - hold
+      #     tag: '${CIRCLE_SHA1}'
+      #     extra_build_args: --build-arg app=ludo-gameplay
+      #     repo: ludo-gameplay-pub-prod
+      #     account_id: ${AWS_ACCOUNT_ID_PROD}
+      #     region: ${AWS_REGION}
+      #     auth:
+      #       - aws-cli/setup:
+      #           region: ${AWS_REGION}
+      #           aws_access_key_id: AWS_ACCESS_KEY_ID_PROD
+      #           aws_secret_access_key: AWS_SECRET_ACCESS_KEY_PROD
+      # - aws-ecs/deploy_service_update:
+      #     name: DeployToECS-ludo-gameplay-pub-prod
+      #     requires:
+      #       - BuildAndPushImage-ludo-gameplay-pub-prod
+      #     family: 'ludo-gameplay-pub-prod'
+      #     cluster: 'ludo-gameplay-apis-prod'
+      #     service_name: 'ludo-gameplay-pub-prod'
+      #     container_image_name_updates: 'container=ludo-gameplay-pub-prod,tag=${CIRCLE_SHA1}'
+      #     auth:
+      #       - aws-cli/setup:
+      #           region: ${AWS_REGION}
+      #           aws_access_key_id: AWS_ACCESS_KEY_ID_PROD
+      #           aws_secret_access_key: AWS_SECRET_ACCESS_KEY_PROD
+
+      # - aws-ecr/build_and_push_image:
+      #      name: BuildAndPushImage-ludo-tournament-pr-prod
+      #      filters:
+      #        branches:
+      #          only:
+      #            # -  ci-cd-main
+      #            - main
+      #      requires:
+      #        - hold
+      #      tag: '${CIRCLE_SHA1}'
+      #      extra_build_args: --build-arg app=ludo-tournament
+      #      repo: ludo-tournament-pr-prod
+      #      account_id: ${AWS_ACCOUNT_ID_PROD}
+      #      region: ${AWS_REGION}
+      #      auth:
+      #        - aws-cli/setup:
+      #            region: ${AWS_REGION}
+      #            aws_access_key_id: AWS_ACCESS_KEY_ID_PROD
+      #            aws_secret_access_key: AWS_SECRET_ACCESS_KEY_PROD
+      # - aws-ecs/deploy_service_update:
+      #      name: DeployToECS-ludo-tournament-pr-prod
+      #      requires:
+      #        - BuildAndPushImage-ludo-tournament-pr-prod
+      #      family: 'ludo-tournament-pr-prod'
+      #      cluster: 'ludo-gameplay-apis-prod'
+      #      service_name: 'ludo-tournament-pr-prod'
+      #      container_image_name_updates: 'container=ludo-tournament-pr-prod,tag=${CIRCLE_SHA1}'
+      #      auth:
+      #        - aws-cli/setup:
+      #            region: ${AWS_REGION}
+      #            aws_access_key_id: AWS_ACCESS_KEY_ID_PROD
+      #            aws_secret_access_key: AWS_SECRET_ACCESS_KEY_PROD
+
+      # - aws-ecr/build_and_push_image:
+      #      name: BuildAndPushImage-eg-scheduler-pr-prod
+      #      filters:
+      #        branches:
+      #          only:
+      #            # -  ci-cd-dev
+      #            - main
+      #      requires:
+      #        - hold
+      #      tag: '${CIRCLE_SHA1}'
+      #      extra_build_args: --build-arg app=scheduler
+      #      repo: eg-scheduler-pr-prod
+      #      account_id: ${AWS_ACCOUNT_ID_PROD}
+      #      region: ${AWS_REGION}
+      #      auth:
+      #        - aws-cli/setup:
+      #            region: ${AWS_REGION}
+      #            aws_access_key_id: AWS_ACCESS_KEY_ID_PROD
+      #            aws_secret_access_key: AWS_SECRET_ACCESS_KEY_PROD
+      # - aws-ecs/deploy_service_update:
+      #      name: DeployToECS-eg-scheduler-pr-prod
+      #      requires:
+      #        - BuildAndPushImage-eg-scheduler-pr-prod
+      #      family: 'eg-scheduler-pr-prod'
+      #      cluster: 'eg-rest-apis-prod'
+      #      service_name: 'eg-scheduler-pr-prod'
+      #      container_image_name_updates: 'container=eg-scheduler-pr-prod,tag=${CIRCLE_SHA1}'
+      #      auth:
+      #        - aws-cli/setup:
+      #            region: ${AWS_REGION}
+      #            aws_access_key_id: AWS_ACCESS_KEY_ID_PROD
+      #            aws_secret_access_key: AWS_SECRET_ACCESS_KEY_PROD
+      # - aws-ecr/build_and_push_image:
+      #     name: BuildAndPushImage-ludo-mega-tournament-prod
+      #     filters:
+      #       branches:
+      #         only:
+      #           # -  ci-cd-dev
+      #           - main
+      #     requires:
+      #       - hold
+      #     tag: '${CIRCLE_SHA1}'
+      #     extra_build_args: --build-arg app=ludo-mega-tournament
+      #     repo: ludo-mega-tournament-prod
+      #     account_id: ${AWS_ACCOUNT_ID_PROD}
+      #     region: ${AWS_REGION}
+      #     auth:
+      #       - aws-cli/setup:
+      #           region: ${AWS_REGION}
+      #           aws_access_key_id: AWS_ACCESS_KEY_ID_PROD
+      #           aws_secret_access_key: AWS_SECRET_ACCESS_KEY_PROD
+      # - aws-ecs/deploy_service_update:
+      #     name: DeployToECS-ludo-mega-tournament-prod
+      #     requires:
+      #       - BuildAndPushImage-ludo-mega-tournament-prod
+      #     family: 'ludo-mega-tournament-prod'
+      #     cluster: 'ludo-gameplay-apis-prod'
+      #     service_name: 'ludo-mega-tournament-prod'
+      #     container_image_name_updates: 'container=ludo-mega-tournament-prod,tag=${CIRCLE_SHA1}'
+      #     auth:
+      #       - aws-cli/setup:
+      #           region: ${AWS_REGION}
+      #           aws_access_key_id: AWS_ACCESS_KEY_ID_PROD
+      #           aws_secret_access_key: AWS_SECRET_ACCESS_KEY_PROD
+
+      # - aws-ecr/build_and_push_image:
+      #     name: BuildAndPushImage-sl-gameplay-prod
+      #     filters:
+      #       branches:
+      #         only:
+      #           # -  ci-cd-dev
+      #           - main
+      #     requires:
+      #       - hold
+      #     tag: '${CIRCLE_SHA1}'
+      #     extra_build_args: --build-arg app=sl-gameplay
+      #     repo: sl-gameplay-prod
+      #     account_id: ${AWS_ACCOUNT_ID_PROD}
+      #     region: ${AWS_REGION}
+      #     auth:
+      #       - aws-cli/setup:
+      #           region: ${AWS_REGION}
+      #           aws_access_key_id: AWS_ACCESS_KEY_ID_PROD
+      #           aws_secret_access_key: AWS_SECRET_ACCESS_KEY_PROD
+      # - aws-ecs/deploy_service_update:
+      #     name: DeployToECS-sl-gameplay-prod
+      #     requires:
+      #       - BuildAndPushImage-sl-gameplay-prod
+      #     family: 'sl-gameplay-prod'
+      #     cluster: 'sl-gameplay-prod'
+      #     service_name: 'sl-gameplay-prod'
+      #     container_image_name_updates: 'container=sl-gameplay-prod,tag=${CIRCLE_SHA1}'
+      #     auth:
+      #       - aws-cli/setup:
+      #           region: ${AWS_REGION}
+      #           aws_access_key_id: AWS_ACCESS_KEY_ID_PROD
+      #           aws_secret_access_key: AWS_SECRET_ACCESS_KEY_PROD

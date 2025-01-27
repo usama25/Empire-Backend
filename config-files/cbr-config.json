@@ -1,0 +1,115 @@
+{
+  "underMaintenance": false,
+  "learnings": [
+    {
+      "title": "Learnings_008",
+      "url": "https://www.youtube.com/embed/jmY7SqRHkU8?fs=0&rel=0",
+      "type": "video",
+      "tag": "callbreak,gameplay,pro,hindi,english"
+    },
+    {
+      "title": "Learnings_009",
+      "url": "https://www.youtube.com/embed/F-VXt_juCC8?fs=0&rel=0",
+      "type": "video",
+      "tag": "callbreak,gameplay,pro,hindi,english"
+    }
+  ],
+  "tables": [
+    {
+      "amount": "0",
+      "winnings": "1",
+      "totalRounds": 3,
+      "tableTypeId": "Table00"
+    },
+    {
+      "amount": "5",
+      "winnings": "15",
+      "totalRounds": 3,
+      "tableTypeId": "Table01"
+    },
+    {
+      "amount": "15",
+      "winnings": "45",
+      "totalRounds": 3,
+      "tableTypeId": "Table02"
+    },
+    {
+      "amount": "60",
+      "winnings": "180",
+      "totalRounds": 3,
+      "tableTypeId": "Table03"
+    },
+    {
+      "amount": "120",
+      "winnings": "360",
+      "totalRounds": 3,
+      "tableTypeId": "Table04"
+    },
+    {
+      "amount": "340",
+      "winnings": "1020",
+      "totalRounds": 3,
+      "tableTypeId": "Table05"
+    },
+    {
+      "amount": "670",
+      "winnings": "2010",
+      "totalRounds": 3,
+      "tableTypeId": "Table06"
+    },
+    {
+      "amount": "1250",
+      "winnings": "3750",
+      "totalRounds": 3,
+      "tableTypeId": "Table07"
+    },
+    {
+      "amount": "2800",
+      "winnings": "8400",
+      "totalRounds": 3,
+      "tableTypeId": "Table08"
+    },
+    {
+      "amount": "5000",
+      "winnings": "15000",
+      "totalRounds": 3,
+      "tableTypeId": "Table09"
+    },
+    {
+      "amount": "10000",
+      "winnings": "30000",
+      "totalRounds": 3,
+      "tableTypeId": "Table10"
+    }
+  ],
+  "onlineUsersCount": {
+    "isUserCountEnabled": true,
+    "totalUserCountOffset": 0,
+    "tableUserCountVariance": 5,
+    "tableUserCountOffsets": {
+      "Table00": 0
+    }
+  },
+  "matchMaking": {
+    "isIPRestrictionEnabled": false,
+    "isGeolocationRestrictionEnabled": false,
+    "isPushNotificationsEnabled": false,
+    "isSocketNotificationsEnabled": true,
+    "minimumJoinAmountForNotifications": "1000"
+  },
+  "messages": [
+    "Aaya hu, kuch to leke jaunga",
+    "Kyu aa gaya swad?",
+    "Karwa li beizzati?",
+    "Khatam Tata Bye Bye",
+    "Kaisa laga mera mazak?",
+    "Maza Ayaa?",
+    "Abhi maza ayega na, bhidu",
+    "Kamaal Ho gaya!",
+    "Hurry up",
+    "Are ruko zara sabar karo",
+    "Kuch to gadbad hai daya",
+    "Ye haath mujhe de de Thakur",
+    "Thodi sharam kar le re baba"
+  ]
+}

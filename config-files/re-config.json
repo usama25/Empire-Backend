@@ -1,0 +1,87 @@
+{
+  "underMaintenance": false,
+  "gameCommissionByUsers": {
+    "2": "4",
+    "3": "6",
+    "4": "8",
+    "5": "10",
+    "6": "12"
+  },
+  "tables": [
+    {
+      "tableTypeId": "ReTable01",
+      "variation": "point",
+      "pointValue": "0.0125",
+      "maxPlayer": 6,
+      "matchingTime": 30
+    },
+    {
+        "tableTypeId": "ReTable02",
+        "variation": "point",
+        "pointValue": "0.05",
+        "maxPlayer": 6,
+        "matchingTime": 60
+    },
+    {
+        "tableTypeId": "ReTable03",
+        "variation": "point",
+        "pointValue": "0.1",
+        "maxPlayer": 6,
+        "matchingTime": 90
+    },
+    {
+        "tableTypeId": "ReTable04",
+        "variation": "point",
+        "pointValue": "0.25",
+        "maxPlayer": 6,
+        "matchingTime": 120
+    },
+    {
+        "tableTypeId": "ReTable05",
+        "variation": "point",
+        "pointValue": "0.5",
+        "maxPlayer": 6,
+        "matchingTime": 150
+    },
+    {
+        "tableTypeId": "ReTable06",
+        "variation": "point",
+        "pointValue": "1",
+        "maxPlayer": 6,
+        "matchingTime": 180
+    }
+  ],
+  "onlineUsersCount": {
+    "isUserCountEnabled": true,
+    "totalUserCountOffset": 0,
+    "tableUserCountVariance": 5,
+    "tableUserCountOffsets": {
+      "Table01": 0
+    }
+  },
+  "matchMakingNotifications": {
+    "isPushNotificationsEnabled": true,
+    "isSocketNotificationsEnabled": true,
+    "minimumJoinAmountForNotifications": "1000"
+  },
+  "messages": [
+    "Kaisa laga mera mazak?",
+    "Emotional Damage",
+    "Apun ich Bhagwan Hai",
+    "Maza Ayaa?",
+    "Adbhut!",
+    "Thodi sharam kar le re baba",
+    "Abhi maza ayega na, bhidu",
+    "Zing, Zing, Amazing!",
+    "Hello!",
+    "Kyu, bali chad gayi na!",
+    "Kamaal Ho gaya!",
+    "Boom!!!",
+    "Hurry up",
+    "Aree yaar…",
+    "Please don’t",
+    "Showtime!",
+    "Peeche dheko",
+    "Jalwa hai hamara"
+  ]
+}
