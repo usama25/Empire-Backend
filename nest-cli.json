@@ -1,11 +1,11 @@
 {
-  "$schema": "https://json.schemastore.org/nest-cli",
+ "$schema": "https://json.schemastore.org/nest-cli",
   "collection": "@nestjs/schematics",
-  "sourceRoot": "apps/test/src",
+  "sourceRoot": "apps/auth/src",
   "compilerOptions": {
     "deleteOutDir": true,
     "webpack": true,
-    "tsConfigPath": "apps/test/tsconfig.app.json",
+    "tsConfigPath": "apps/auth/tsconfig.app.json",
     "plugins": [
       {
         "name": "@nestjs/swagger",
